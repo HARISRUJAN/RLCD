@@ -34,6 +34,21 @@ For hosted or local-model runs, follow [`SETUP.md`](SETUP.md).
 
 Jev is TypeSafe AI's hosted System One decision model/service: you send state and typed questions, and it returns structured answers. `@typesafe-ai/sdk` is the client library. Jev is not Ollama and is not a general application framework; this repository uses the SDK to compare Jev with local Ollama models and GPT-5.6 Luna.
 
+## Single comparison table
+
+All measured rows use seed `42` and the same generated alert format. The 10-alert rows are directly comparable; the 10,000-alert rows show scale and are labeled separately.
+
+| Run | Classifier | Accuracy | Precision | Recall | F1 | Avg latency | P95 latency | Total tokens | Cost | Status |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| 10 alerts | [Local Jev](reports/alert-10-jev.md) | 80.00% | 0.00% | 0.00% | 0.00% | 72 ms | 106 ms | 446 | $0 | Measured |
+| 10 alerts | [Gemma 3 4B](reports/alert-10-ollama.md) | 50.00% | 28.57% | 100.00% | 44.44% | 3,612 ms | 15,839 ms | 1,060 | $0 | Measured |
+| 10 alerts | [TinyLlama](reports/alert-10-ollama.md) | 20.00% | 20.00% | 100.00% | 33.33% | 2,682 ms | 12,873 ms | 1,244 | $0 | Measured |
+| 10 alerts | [Qwen3 4B AgentCoder](reports/alert-10-ollama.md) | 100.00% | 100.00% | 100.00% | 100.00% | 23,554 ms | 34,826 ms | 6,315 | $0 | Measured |
+| 10,000 alerts | [Local Jev](reports/alert-10000-jev.md) | 88.42% | 0.00% | 0.00% | 0.00% | 660 ms | 721 ms | 443,694 | $0 | Measured |
+| 10,000 alerts | GPT-5.6 Luna | — | — | — | — | — | — | 851,840 | $0.250368 | Estimate; not run |
+
+The local Jev result is fast but misses every incident at threshold `0.5`. Qwen is the strongest 10-alert result but is much slower. GPT-5.6 Luna has only a token/cost estimate until an API key is provided. The generated labels are synthetic rule-based ground truth, not human labels.
+
 ## Local Jev alert validation
 
 The local server is the `local-jev` compatible server, not the hosted TypeSafe service. Run it first, then use the same deterministic alert stream as the Ollama and OpenAI comparisons:

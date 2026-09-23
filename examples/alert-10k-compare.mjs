@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { mkdir, writeFile } from "node:fs/promises";
 import { performance } from "node:perf_hooks";
 import { noul, TypeSafeClient } from "@typesafe-ai/sdk";
+import { generateAlerts } from "./alert-data.mjs";
 
 const COUNT = Number(process.env.ALERT_COUNT ?? 10_000);
 const SEED = Number(process.env.ALERT_SEED ?? 42);
@@ -16,15 +17,6 @@ const JEV_OUTPUT_PRICE = Number(process.env.JEV_OUTPUT_PRICE_PER_MTOK ?? 0);
 const OLLAMA_URL = process.env.OLLAMA_URL ?? "http://127.0.0.1:11434";
 const OLLAMA_MODELS_OVERRIDE = process.env.OLLAMA_MODELS?.split(",").map((model) => model.trim()).filter(Boolean);
 
-const sensors = [
-  ["temperature", "°C", 18, 28, (random) => random < 0.5 ? 72 + random * 18 : -18 + random * 8],
-  ["vibration", "g", 0.1, 0.8, (random) => 4 + random * 5],
-  ["voltage", "V", 3.1, 3.4, (random) => 2.2 + random * 0.5],
-  ["current", "A", 0.2, 1.2, (random) => 3.2 + random * 2.5],
-  ["pressure", "kPa", 98, 103, (random) => random < 0.5 ? 75 + random * 10 : 115 + random * 20],
-  ["smoke", "obscuration", 0.01, 0.15, (random) => 0.8 + random * 0.2],
-];
-
 const incidentQuestion = noul("Does this microcontroller alert represent a real incident requiring operator action?");
 const OPENAI_INSTRUCTIONS = [
   "Classify one microcontroller alert as an incident.",
@@ -37,43 +29,6 @@ const OPENAI_SCHEMA = {
   required: ["incident"],
   additionalProperties: false,
 };
-
-function rng(seed) {
-  let value = seed >>> 0;
-  return () => {
-    value = (value * 1664525 + 1013904223) >>> 0;
-    return value / 2 ** 32;
-  };
-}
-
-function generateAlerts(count, seed) {
-  const random = rng(seed);
-  return Array.from({ length: count }, (_, index) => {
-    const [sensor, unit, normalMin, normalMax, incidentValue] = sensors[Math.floor(random() * sensors.length)];
-    const incident = random() < 0.12;
-    const value = incident
-      ? incidentValue(random())
-      : normalMin + random() * (normalMax - normalMin);
-    const device = `mcu-${String(1 + Math.floor(random() * 250)).padStart(3, "0")}`;
-    const battery = (3.55 + random() * 0.6).toFixed(2);
-    const rssi = Math.round(-45 - random() * 45);
-    return {
-      id: `alert-${String(index + 1).padStart(5, "0")}`,
-      device,
-      sequence: index + 1,
-      timestamp: new Date(Date.UTC(2026, 0, 1, 0, 0, index * 5)).toISOString(),
-      sensor,
-      value: Number(value.toFixed(3)),
-      unit,
-      normalMin,
-      normalMax,
-      battery,
-      rssi,
-      incident,
-      text: `${device} ${sensor} alert: ${value.toFixed(3)} ${unit}; normal range ${normalMin}-${normalMax} ${unit}; battery ${battery} V; RSSI ${rssi} dBm.`,
-    };
-  });
-}
 
 function costUsd(inputTokens, outputTokens, inputPrice, outputPrice, cachedInputTokens = 0, cachedInputPrice = inputPrice) {
   return ((inputTokens - cachedInputTokens) * inputPrice + cachedInputTokens * cachedInputPrice + outputTokens * outputPrice) / 1_000_000;

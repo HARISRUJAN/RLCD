@@ -87,6 +87,14 @@ TYPESAFE_BASE_URL=http://127.0.0.1:8765 TYPESAFE_API_KEY=local ALERT_COUNT=10000
 
 The local Jev Noul threshold defaults to `0.5`. Use `INCIDENT_THRESHOLD=0.1` only as a calibration experiment; record the threshold with every report because it changes the precision/recall tradeoff sharply.
 
+Run the pairwise Noul grouping sample against the same 10,000-alert stream:
+
+```sh
+GROUP_SAMPLE_PAIRS=100 ALERT_CONCURRENCY=4 TYPESAFE_BASE_URL=http://127.0.0.1:8765 TYPESAFE_API_KEY=local npm run alerts:noul-group
+```
+
+The sample uses a hidden synthetic root-cause family only as an evaluation oracle. It is not sent to Jev and does not represent a real causal label.
+
 The model cache is stored under `.hf-cache/`; both it and `local-jev/` are ignored.
 
 ## Run the installed Ollama models

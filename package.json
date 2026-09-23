@@ -13,6 +13,7 @@
     "alerts:jev": "node examples/alert-10k-compare.mjs --provider=jev",
     "alerts:openai": "node examples/alert-10k-compare.mjs --provider=openai",
     "alerts:ollama": "node examples/alert-10k-compare.mjs --provider=ollama",
+    "alerts:noul-group": "node examples/noul-grouping-sample.mjs",
     "alerts:compare": "node examples/alert-10k-compare.mjs --provider=both",
     "kb": "TYPESAFE_BASE_URL=http://127.0.0.1:8765 TYPESAFE_API_KEY=local node examples/jev-kb.mjs",
     "local": "HF_HOME=.hf-cache local-jev/.venv/bin/local-jev serve --model nli-deberta-large",

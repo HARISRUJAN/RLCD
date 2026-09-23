@@ -49,6 +49,10 @@ All measured rows use seed `42` and the same generated alert format. The 10-aler
 
 The local Jev result is fast but misses every incident at threshold `0.5`. Qwen is the strongest 10-alert result but is much slower. GPT-5.6 Luna has only a token/cost estimate until an API key is provided. The generated labels are synthetic rule-based ground truth, not human labels.
 
+## Noul grouping sample
+
+The same 10,000-alert stream was sampled into 100 balanced pairs of incident alerts. Local Jev was asked whether each pair belonged to the same synthetic root-cause family. The [report](reports/noul-grouping-sample.md) shows 50% accuracy at threshold `0.5`, 36% at `0.3`, and 50% at `0.1` because the model predicted every pair as related. This validates the integration path, not real root-cause quality; use historical incidents with known incident IDs for that evaluation.
+
 ## Local Jev alert validation
 
 The local server is the `local-jev` compatible server, not the hosted TypeSafe service. Run it first, then use the same deterministic alert stream as the Ollama and OpenAI comparisons:
@@ -94,11 +98,14 @@ Run `npm run alerts:compare` only after both providers are configured; it execut
 |---|---|
 | `examples/jev-benchmark.mjs` | Labeled routing benchmark and report generator |
 | `examples/jev-kb.mjs` | Retrieval plus grounded-answer companion demo |
+| `examples/alert-data.mjs` | Shared deterministic microcontroller-alert generator |
+| `examples/noul-grouping-sample.mjs` | Pairwise Noul grouping sample |
 | `experiments/jev/README.md` | Protocol, hypothesis, and reproduction commands |
 | `experiments/jev/ANALYSIS.md` | Results, interpretation, and upgrade path |
 | `reports/` | Checked-in example outputs |
 | `SETUP.md` | Installation, local model setup, and troubleshooting |
 | `reports/alert-10000-estimate.md` | 10k GPT-5.6 Luna token/cost estimate |
+| `reports/noul-grouping-sample.md` | Noul grouping sample and threshold results |
 
 ## Experiment protocol
 

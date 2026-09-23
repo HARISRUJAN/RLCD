@@ -8,6 +8,7 @@ Reproducible experiments comparing **local Jev**, **Ollama models**, and a **GPT
 
 <p>
   <a href="JEV_CHEATSHEET.md"><strong>Read the Jev cheatsheet</strong></a> ·
+  <a href="ARTICLE_DRAFT.md"><strong>Read the article draft</strong></a> ·
   <a href="SETUP.md"><strong>Setup guide</strong></a> ·
   <a href="reports/"><strong>Reports</strong></a>
 </p>
@@ -187,6 +188,7 @@ Keep keys server-side. For GPT-5.6 Luna, the checked-in estimate is in [`reports
 | Path | Purpose |
 |---|---|
 | [`JEV_CHEATSHEET.md`](JEV_CHEATSHEET.md) | One-page Jev and question-type reference |
+| [`ARTICLE_DRAFT.md`](ARTICLE_DRAFT.md) | Honest engineering article draft |
 | `examples/alert-data.mjs` | Shared deterministic alert generator |
 | `examples/alert-10k-compare.mjs` | Jev, OpenAI, Ollama, and mock comparison harness |
 | `examples/noul-grouping-sample.mjs` | Pairwise Noul grouping experiment |

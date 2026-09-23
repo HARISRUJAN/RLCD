@@ -1,0 +1,10 @@
+node_modules/
+.venv/
+.hf-cache/
+local-jev/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+reports/*.tmp.md

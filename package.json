@@ -1,0 +1,18 @@
+{
+  "name": "jev-decision-experiment",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Reproducible Jev structured-decision routing experiment",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "benchmark": "node examples/jev-benchmark.mjs",
+    "benchmark:mock": "node examples/jev-benchmark.mjs --mock",
+    "kb": "TYPESAFE_BASE_URL=http://127.0.0.1:8765 TYPESAFE_API_KEY=local node examples/jev-kb.mjs",
+    "local": "HF_HOME=.hf-cache local-jev/.venv/bin/local-jev serve --model nli-deberta-large",
+    "local:benchmark": "TYPESAFE_BASE_URL=http://127.0.0.1:8765 TYPESAFE_API_KEY=local npm run benchmark"
+  },
+  "dependencies": {
+    "@typesafe-ai/sdk": "^0.6.0"
+  }
+}

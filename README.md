@@ -30,6 +30,8 @@ The mock run requires no credentials, model download, or network service. It wri
 
 For hosted or local-model runs, follow [`SETUP.md`](SETUP.md).
 
+Beginner reference: [`JEV_CHEATSHEET.md`](JEV_CHEATSHEET.md).
+
 ## What Jev is
 
 Jev is TypeSafe AI's hosted System One decision model/service: you send state and typed questions, and it returns structured answers. `@typesafe-ai/sdk` is the client library. Jev is not Ollama and is not a general application framework; this repository uses the SDK to compare Jev with local Ollama models and GPT-5.6 Luna.
@@ -100,6 +102,7 @@ Run `npm run alerts:compare` only after both providers are configured; it execut
 | `examples/jev-kb.mjs` | Retrieval plus grounded-answer companion demo |
 | `examples/alert-data.mjs` | Shared deterministic microcontroller-alert generator |
 | `examples/noul-grouping-sample.mjs` | Pairwise Noul grouping sample |
+| `JEV_CHEATSHEET.md` | One-page Jev and question-type reference |
 | `experiments/jev/README.md` | Protocol, hypothesis, and reproduction commands |
 | `experiments/jev/ANALYSIS.md` | Results, interpretation, and upgrade path |
 | `reports/` | Checked-in example outputs |

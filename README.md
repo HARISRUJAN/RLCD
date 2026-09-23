@@ -34,6 +34,16 @@ For hosted or local-model runs, follow [`SETUP.md`](SETUP.md).
 
 Jev is TypeSafe AI's hosted System One decision model/service: you send state and typed questions, and it returns structured answers. `@typesafe-ai/sdk` is the client library. Jev is not Ollama and is not a general application framework; this repository uses the SDK to compare Jev with local Ollama models and GPT-5.6 Luna.
 
+## Local Jev alert validation
+
+The local server is the `local-jev` compatible server, not the hosted TypeSafe service. Run it first, then use the same deterministic alert stream as the Ollama and OpenAI comparisons:
+
+```sh
+TYPESAFE_BASE_URL=http://127.0.0.1:8765 TYPESAFE_API_KEY=local ALERT_COUNT=10000 ALERT_CONCURRENCY=20 npm run alerts:jev
+```
+
+The completed 10k run is [`reports/alert-10000-jev.md`](reports/alert-10000-jev.md): 88.42% accuracy, 0% recall at the default Noul threshold `0.5`, 443,694 total tokens, 660.15 ms average latency, and $0 API cost. The 10-alert apples-to-apples report is [`reports/alert-10-jev.md`](reports/alert-10-jev.md). A 100-alert threshold check is [`reports/alert-100-jev.md`](reports/alert-100-jev.md); at `0.1`, recall reached 100% but every alert was predicted as an incident.
+
 ## Ollama validation
 
 The current local Ollama inventory contains three generative models and one embedding model. Run the generative models with:

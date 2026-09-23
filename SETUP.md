@@ -79,6 +79,14 @@ Run the retrieval and grounded-answer demo:
 npm run kb
 ```
 
+Run the 10k alert comparison against the local server:
+
+```sh
+TYPESAFE_BASE_URL=http://127.0.0.1:8765 TYPESAFE_API_KEY=local ALERT_COUNT=10000 ALERT_CONCURRENCY=20 npm run alerts:jev
+```
+
+The local Jev Noul threshold defaults to `0.5`. Use `INCIDENT_THRESHOLD=0.1` only as a calibration experiment; record the threshold with every report because it changes the precision/recall tradeoff sharply.
+
 The model cache is stored under `.hf-cache/`; both it and `local-jev/` are ignored.
 
 ## Run the installed Ollama models

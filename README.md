@@ -1,128 +1,200 @@
-# Jev decision experiment
+<div align="center">
 
-A small, reproducible experiment for testing typed Jev decisions on support-ticket routing.
+# Jev Decision Experiment
 
-The benchmark asks one `Choice` question— which department should handle a ticket?—and one `Noul` question about human escalation. It records correctness, confidence, latency, and token usage for each case.
+### Typed decisions for alert routing and incident grouping
 
-This is an exploratory teaching benchmark, not a claim of general model performance.
+Reproducible experiments comparing **local Jev**, **Ollama models**, and a **GPT-5.6 Luna estimate** on a deterministic microcontroller-alert stream.
+
+<p>
+  <a href="JEV_CHEATSHEET.md"><strong>Read the Jev cheatsheet</strong></a> ·
+  <a href="SETUP.md"><strong>Setup guide</strong></a> ·
+  <a href="reports/"><strong>Reports</strong></a>
+</p>
+
+<img alt="Node.js 20+" src="https://img.shields.io/badge/Node.js-20%2B-339933?logo=node.js&logoColor=white">
+<img alt="Jev typed decisions" src="https://img.shields.io/badge/Jev-typed%20decisions-5B4BDB">
+<img alt="Ollama local models" src="https://img.shields.io/badge/Ollama-local%20models-111111?logo=ollama&logoColor=white">
+<img alt="Status experimental" src="https://img.shields.io/badge/status-experimental-F59E0B">
+
+</div>
+
+> **Current call:** keep hard sensor alarms deterministic. Use Jev as a second-stage semantic layer for ambiguous grouping, routing, severity, and human-review decisions.
+
+## Why this repository exists
+
+Jev is a decision model/service: send **state + a typed question**, receive a structured answer, and let application code decide what happens next. It is not an alerting system or a general chat framework.
+
+This repository tests that pattern against the same generated data and records accuracy, precision, recall, F1, latency, token usage, and cost.
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+### 01 · Same data
+
+10,000 deterministic microcontroller alerts with fixed seed `42`, sensor ranges, device metadata, and reproducible labels.
+
+</td>
+<td width="50%" valign="top">
+
+### 02 · Typed decisions
+
+Jev `Noul`, `Choice`, and `Score` questions instead of unconstrained text generation.
+
+</td>
+</tr>
+<tr>
+<td width="50%" valign="top">
+
+### 03 · Local-first
+
+Run `local-jev` and Ollama locally. No API cost for local inference.
+
+</td>
+<td width="50%" valign="top">
+
+### 04 · Honest reports
+
+Checked-in reports expose thresholds, sample sizes, latency, tokens, costs, and limitations.
+
+</td>
+</tr>
+</table>
 
 ## Results at a glance
 
-The checked-in local run routed all 10 cases correctly:
+The 10-alert rows are directly comparable. The 10,000-alert rows show scale and are labeled separately. All measured rows use seed `42`.
 
-| Variant | Cases | Accuracy | Average latency | Total tokens |
-|---|---:|---:|---:|---:|
-| Mock fixture | 10 | 100.0% | ~0 ms | 0 |
-| Local Jev run | 10 | 100.0% | 105.09 ms | 1,973 |
+| Run | Classifier | Accuracy | Precision | Recall | F1 | Avg latency | Total tokens | Cost | Status |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---|
+| 10 alerts | [Local Jev](reports/alert-10-jev.md) | 80.00% | 0.00% | 0.00% | 0.00% | 72 ms | 446 | $0 | Measured |
+| 10 alerts | [Gemma 3 4B](reports/alert-10-ollama.md) | 50.00% | 28.57% | 100.00% | 44.44% | 3,612 ms | 1,060 | $0 | Measured |
+| 10 alerts | [TinyLlama](reports/alert-10-ollama.md) | 20.00% | 20.00% | 100.00% | 33.33% | 2,682 ms | 1,244 | $0 | Measured |
+| 10 alerts | [Qwen3 4B AgentCoder](reports/alert-10-ollama.md) | 100.00% | 100.00% | 100.00% | 100.00% | 23,554 ms | 6,315 | $0 | Measured |
+| 10,000 alerts | [Local Jev](reports/alert-10000-jev.md) | 88.42% | 0.00% | 0.00% | 0.00% | 660 ms | 443,694 | $0 | Measured |
+| 10,000 alerts | GPT-5.6 Luna | — | — | — | — | — | 851,840 | $0.250368 | Estimate; not run |
 
-The sample is intentionally small and synthetic. See [`experiments/jev/ANALYSIS.md`](experiments/jev/ANALYSIS.md) for interpretation and validity limits.
+### What the numbers mean
+
+- **Local Jev:** fast, but missed every synthetic incident at the default Noul threshold `0.5`.
+- **Qwen3:** strongest 10-alert smoke result, but roughly 23.6 seconds per alert locally.
+- **GPT-5.6 Luna:** token and cost estimate only; no live API call has been made.
+- **Synthetic labels:** useful for wiring and regression checks, not proof of production quality.
 
 ## Quick start
-
-Requirements: Node.js 20+ and npm.
 
 ```sh
 npm install
 npm run benchmark:mock
 ```
 
-The mock run requires no credentials, model download, or network service. It writes `reports/jev-benchmark.mock.md`.
+The mock benchmark needs no credentials or model downloads. It writes `reports/jev-benchmark.mock.md`.
 
-For hosted or local-model runs, follow [`SETUP.md`](SETUP.md).
+For the complete environment setup, see [`SETUP.md`](SETUP.md). For a beginner-friendly explanation of Jev, see [`JEV_CHEATSHEET.md`](JEV_CHEATSHEET.md).
 
-Beginner reference: [`JEV_CHEATSHEET.md`](JEV_CHEATSHEET.md).
+## Run the local Jev comparison
 
-## What Jev is
+The local server is the [`local-jev`](https://github.com/amithgc/local-jev) Jev-compatible server, not the hosted TypeSafe service.
 
-Jev is TypeSafe AI's hosted System One decision model/service: you send state and typed questions, and it returns structured answers. `@typesafe-ai/sdk` is the client library. Jev is not Ollama and is not a general application framework; this repository uses the SDK to compare Jev with local Ollama models and GPT-5.6 Luna.
-
-## Single comparison table
-
-All measured rows use seed `42` and the same generated alert format. The 10-alert rows are directly comparable; the 10,000-alert rows show scale and are labeled separately.
-
-| Run | Classifier | Accuracy | Precision | Recall | F1 | Avg latency | P95 latency | Total tokens | Cost | Status |
-|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| 10 alerts | [Local Jev](reports/alert-10-jev.md) | 80.00% | 0.00% | 0.00% | 0.00% | 72 ms | 106 ms | 446 | $0 | Measured |
-| 10 alerts | [Gemma 3 4B](reports/alert-10-ollama.md) | 50.00% | 28.57% | 100.00% | 44.44% | 3,612 ms | 15,839 ms | 1,060 | $0 | Measured |
-| 10 alerts | [TinyLlama](reports/alert-10-ollama.md) | 20.00% | 20.00% | 100.00% | 33.33% | 2,682 ms | 12,873 ms | 1,244 | $0 | Measured |
-| 10 alerts | [Qwen3 4B AgentCoder](reports/alert-10-ollama.md) | 100.00% | 100.00% | 100.00% | 100.00% | 23,554 ms | 34,826 ms | 6,315 | $0 | Measured |
-| 10,000 alerts | [Local Jev](reports/alert-10000-jev.md) | 88.42% | 0.00% | 0.00% | 0.00% | 660 ms | 721 ms | 443,694 | $0 | Measured |
-| 10,000 alerts | GPT-5.6 Luna | — | — | — | — | — | — | 851,840 | $0.250368 | Estimate; not run |
-
-The local Jev result is fast but misses every incident at threshold `0.5`. Qwen is the strongest 10-alert result but is much slower. GPT-5.6 Luna has only a token/cost estimate until an API key is provided. The generated labels are synthetic rule-based ground truth, not human labels.
-
-## Noul grouping sample
-
-The same 10,000-alert stream was sampled into 100 balanced pairs of incident alerts. Local Jev was asked whether each pair belonged to the same synthetic root-cause family. The [report](reports/noul-grouping-sample.md) shows 50% accuracy at threshold `0.5`, 36% at `0.3`, and 50% at `0.1` because the model predicted every pair as related. This validates the integration path, not real root-cause quality; use historical incidents with known incident IDs for that evaluation.
-
-## Local Jev alert validation
-
-The local server is the `local-jev` compatible server, not the hosted TypeSafe service. Run it first, then use the same deterministic alert stream as the Ollama and OpenAI comparisons:
+Start the server, then run the 10,000-alert comparison:
 
 ```sh
-TYPESAFE_BASE_URL=http://127.0.0.1:8765 TYPESAFE_API_KEY=local ALERT_COUNT=10000 ALERT_CONCURRENCY=20 npm run alerts:jev
+TYPESAFE_BASE_URL=http://127.0.0.1:8765 \
+TYPESAFE_API_KEY=local \
+ALERT_COUNT=10000 \
+ALERT_CONCURRENCY=20 \
+npm run alerts:jev
 ```
 
-The completed 10k run is [`reports/alert-10000-jev.md`](reports/alert-10000-jev.md): 88.42% accuracy, 0% recall at the default Noul threshold `0.5`, 443,694 total tokens, 660.15 ms average latency, and $0 API cost. The 10-alert apples-to-apples report is [`reports/alert-10-jev.md`](reports/alert-10-jev.md). A 100-alert threshold check is [`reports/alert-100-jev.md`](reports/alert-100-jev.md); at `0.1`, recall reached 100% but every alert was predicted as an incident.
+### Noul grouping sample
 
-## Ollama validation
+This samples 100 balanced alert pairs from the same 10,000-alert stream and asks whether each pair belongs to the same synthetic root-cause family.
 
-The current local Ollama inventory contains three generative models and one embedding model. Run the generative models with:
+```sh
+GROUP_SAMPLE_PAIRS=100 \
+ALERT_CONCURRENCY=4 \
+TYPESAFE_BASE_URL=http://127.0.0.1:8765 \
+TYPESAFE_API_KEY=local \
+npm run alerts:noul-group
+```
+
+See the [Noul grouping report](reports/noul-grouping-sample.md). It validates the integration path, not real root-cause quality; historical incidents with known incident IDs are needed for that.
+
+## Run Ollama models
+
+List your local inventory:
+
+```sh
+ollama list
+```
+
+The checked-in smoke run used:
+
+| Model | Role |
+|---|---|
+| `gemma3:4b` | Generative classifier |
+| `tinyllama:latest` | Generative classifier |
+| `brnpistone/Qwen3-4B-AgentCoder-q5-k-m:latest` | Generative classifier |
+| `nomic-embed-text:v1.5` | Embeddings; skipped |
+
+Run the smoke comparison:
 
 ```sh
 ALERT_COUNT=10 ALERT_CONCURRENCY=2 npm run alerts:ollama
 ```
 
-The smoke report is [`reports/alert-10-ollama.md`](reports/alert-10-ollama.md). The 10-alert result was 50% for `gemma3:4b`, 20% for `tinyllama:latest`, and 100% for `brnpistone/Qwen3-4B-AgentCoder-q5-k-m:latest`; the Qwen run averaged about 23.55 seconds per alert. `nomic-embed-text:v1.5` is skipped because it produces embeddings rather than classifications.
+See the [Ollama smoke report](reports/alert-10-ollama.md). The full 10k local run was not completed because the observed Qwen throughput would take roughly 33 hours at concurrency `2`.
 
-This is a wiring and smoke validation, not a completed 10k local inference run. At the observed Qwen latency, 10k alerts with concurrency 2 would take roughly 33 hours. The deterministic 10k rule-based baseline is [`reports/alert-10000-mock.md`](reports/alert-10000-mock.md).
+## What Jev question should I use?
 
-The same harness supports the full deterministic stream, but run cost here means GPU time rather than API spend:
+| Need | Jev type | Example |
+|---|---|---|
+| Yes/no probability | **Noul** | “Are these alerts from the same incident?” |
+| Finite route or group | **Choice** | “Which incident group fits?” |
+| Ordered level | **Score** | “How severe is this: informational, urgent, or critical?” |
 
-```sh
-ALERT_COUNT=10000 ALERT_CONCURRENCY=2 npm run alerts:ollama
-```
+Rule of thumb: **Noul = yes/no, Choice = which one, Score = how much on an ordered scale.**
 
-The 10k GPT-5.6 Luna dry-run estimate is in [`reports/alert-10000-estimate.md`](reports/alert-10000-estimate.md). It uses the standard rates of $0.20 per 1M input tokens and $1.20 per 1M output tokens; live usage is read from the API response.
+For alert grouping, combine deterministic deduplication, time windows, and service topology first. Give Jev a small candidate set and keep `new_incident` and `human_review` as choices.
 
-To run the paid providers, set the required credentials and start with a small count:
+## Hosted providers
+
+Start small before running a paid comparison:
 
 ```sh
 ALERT_COUNT=100 TYPESAFE_API_KEY=... npm run alerts:jev
 ALERT_COUNT=100 OPENAI_API_KEY=... npm run alerts:openai
 ```
 
-Run `npm run alerts:compare` only after both providers are configured; it executes both against the same generated stream.
+Run both against the same stream only after both credentials are configured:
 
-## Repository layout
+```sh
+ALERT_COUNT=100 \
+TYPESAFE_API_KEY=... \
+OPENAI_API_KEY=... \
+npm run alerts:compare
+```
+
+Keep keys server-side. For GPT-5.6 Luna, the checked-in estimate is in [`reports/alert-10000-estimate.md`](reports/alert-10000-estimate.md).
+
+## Repository map
 
 | Path | Purpose |
 |---|---|
-| `examples/jev-benchmark.mjs` | Labeled routing benchmark and report generator |
-| `examples/jev-kb.mjs` | Retrieval plus grounded-answer companion demo |
-| `examples/alert-data.mjs` | Shared deterministic microcontroller-alert generator |
-| `examples/noul-grouping-sample.mjs` | Pairwise Noul grouping sample |
-| `JEV_CHEATSHEET.md` | One-page Jev and question-type reference |
-| `experiments/jev/README.md` | Protocol, hypothesis, and reproduction commands |
-| `experiments/jev/ANALYSIS.md` | Results, interpretation, and upgrade path |
-| `reports/` | Checked-in example outputs |
-| `SETUP.md` | Installation, local model setup, and troubleshooting |
-| `reports/alert-10000-estimate.md` | 10k GPT-5.6 Luna token/cost estimate |
-| `reports/noul-grouping-sample.md` | Noul grouping sample and threshold results |
-
-## Experiment protocol
-
-- 10 synthetic support tickets with frozen expected departments.
-- One sequential SDK request per case.
-- Variants: deterministic mock, local Jev-compatible server, hosted TypeSafe Jev.
-- Primary metric: routing accuracy.
-- Secondary metrics: confidence, wall-clock latency, input tokens, output tokens, and total tokens.
-- Mock mode asserts that every fixture prediction matches its expected label.
-
-## Reproducibility
-
-Do not commit API keys, virtual environments, model weights, or caches. Hosted runs can incur cost and include network latency. Before publishing a new report, record the model, SDK version, hardware, configuration, timestamp, and dataset revision.
+| [`JEV_CHEATSHEET.md`](JEV_CHEATSHEET.md) | One-page Jev and question-type reference |
+| `examples/alert-data.mjs` | Shared deterministic alert generator |
+| `examples/alert-10k-compare.mjs` | Jev, OpenAI, Ollama, and mock comparison harness |
+| `examples/noul-grouping-sample.mjs` | Pairwise Noul grouping experiment |
+| `examples/jev-benchmark.mjs` | Original support-ticket routing benchmark |
+| `reports/` | Checked-in experiment outputs |
+| [`SETUP.md`](SETUP.md) | Installation and troubleshooting |
+| `experiments/jev/` | Protocol and analysis notes |
 
 ## Limitations
 
-The benchmark has no repeated trials, confidence intervals, calibration analysis, adversarial cases, multilingual cases, or production traffic. A larger evaluation should use a frozen labeled dataset, per-class metrics, a confusion matrix, latency percentiles, cost, and human-escalation quality.
+This is an exploratory teaching benchmark. It does not include repeated trials, confidence intervals, human-labeled root causes, adversarial cases, multilingual data, or production traffic. Before deployment, use a held-out historical dataset and measure false merges, fragmented incidents, false negatives, p95 latency, cost, and human-review rate.
+
+## License
+
+No license has been declared in this experimental repository yet.

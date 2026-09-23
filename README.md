@@ -121,6 +121,10 @@ npm run alerts:noul-group
 
 See the [Noul grouping report](reports/noul-grouping-sample.md). It validates the integration path, not real root-cause quality; historical incidents with known incident IDs are needed for that.
 
+### How the Noul threshold works
+
+`answer.noul` is a probability of **yes**. Your code turns it into a decision with `probability >= threshold`. A lower threshold finds more matches but risks false merges; a higher threshold reduces false merges but fragments incidents. The threshold must be calibrated on labeled incidents—`0.5` is not automatically correct. In this experiment, `0.5` grouped nothing, while `0.1` grouped every sampled pair.
+
 ## Run Ollama models
 
 List your local inventory:

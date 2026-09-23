@@ -85,7 +85,7 @@ Run the 10k alert comparison against the local server:
 TYPESAFE_BASE_URL=http://127.0.0.1:8765 TYPESAFE_API_KEY=local ALERT_COUNT=10000 ALERT_CONCURRENCY=20 npm run alerts:jev
 ```
 
-The local Jev Noul threshold defaults to `0.5`. Use `INCIDENT_THRESHOLD=0.1` only as a calibration experiment; record the threshold with every report because it changes the precision/recall tradeoff sharply.
+The local Jev Noul threshold defaults to `0.5`. A Noul value is the estimated probability of **yes**; your application predicts yes when `value >= threshold`. Lower thresholds increase recall and false positives, while higher thresholds reduce false positives and increase missed matches. Use `INCIDENT_THRESHOLD=0.1` only as a calibration experiment; record the threshold with every report because it changes the precision/recall tradeoff sharply.
 
 Run the pairwise Noul grouping sample against the same 10,000-alert stream:
 

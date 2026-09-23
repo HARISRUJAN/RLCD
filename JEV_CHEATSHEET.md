@@ -20,6 +20,20 @@ Official overview: [What is Jev?](https://www.typesafeai.org/jev)
 
 Use for a focused proposition. `0.85` means Jev estimates an 85% chance of **yes**. It is not automatically a safe production threshold.
 
+Convert the probability into a decision in your code:
+
+```js
+const probability = result.answers.sameIncident.noul;
+const sameIncident = probability >= threshold;
+```
+
+| Threshold choice | Operational effect |
+|---|---|
+| Lower | More matches; more false merges |
+| Higher | Fewer false merges; more fragmented incidents |
+
+`0.5` is not a universal default. Calibrate the threshold on labeled historical incidents and choose it using the cost of false merges versus missed matches. A middle band can go to `human_review`.
+
 ### Choice
 
 Use for routing or grouping. Include a fallback such as `new_incident`, `unknown`, or `human_review`.
@@ -82,6 +96,7 @@ Do not ask Jev to prove a root cause from alert text alone. Provide logs, deploy
 ## Production rules
 
 - Calibrate Noul thresholds on labeled historical incidents; do not assume `0.5` works.
+- A value near `0.5` means uncertainty, not a “medium” amount of the attribute.
 - Measure false merges and fragmented incidents, not only accuracy.
 - On timeout/error, use deterministic fallback or `human_review`; do not silently ignore.
 - Start with reversible suggestions before automatic merging or paging.

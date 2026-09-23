@@ -6,6 +6,7 @@
 - npm
 - Optional: `uv` or Python 3.10+ for the local Jev-compatible server
 - Optional: a TypeSafe API key for hosted runs
+- Optional: Ollama for local model validation
 
 Check the toolchain:
 
@@ -79,6 +80,60 @@ npm run kb
 ```
 
 The model cache is stored under `.hf-cache/`; both it and `local-jev/` are ignored.
+
+## Run the installed Ollama models
+
+List local models first:
+
+```sh
+ollama list
+```
+
+The harness discovers installed models from Ollama and skips embedding models. The inventory used for the checked-in smoke report was:
+
+- `gemma3:4b`
+- `tinyllama:latest`
+- `brnpistone/Qwen3-4B-AgentCoder-q5-k-m:latest`
+
+It skips `nomic-embed-text:v1.5` because that model creates embeddings and is not an incident classifier.
+
+Run a smoke validation:
+
+```sh
+ALERT_COUNT=10 ALERT_CONCURRENCY=2 npm run alerts:ollama
+```
+
+Run the full 10,000-alert stream when the observed local throughput is acceptable:
+
+```sh
+ALERT_COUNT=10000 ALERT_CONCURRENCY=2 npm run alerts:ollama
+```
+
+Set `OLLAMA_MODELS` to choose a subset, and `OLLAMA_URL` for a non-default daemon:
+
+```sh
+OLLAMA_MODELS=gemma3:4b ALERT_COUNT=100 npm run alerts:ollama
+OLLAMA_URL=http://127.0.0.1:11434 npm run alerts:ollama
+```
+
+Ollama reports local prompt/evaluation token counts when available. Its API cost is `$0`; report hardware, model load time, and GPU time separately.
+
+## Compare Jev and GPT-5.6 Luna
+
+Start with 100 alerts before spending on a 10k run:
+
+```sh
+ALERT_COUNT=100 TYPESAFE_API_KEY=... npm run alerts:jev
+ALERT_COUNT=100 OPENAI_API_KEY=... npm run alerts:openai
+```
+
+For the same stream through both providers:
+
+```sh
+ALERT_COUNT=100 TYPESAFE_API_KEY=... OPENAI_API_KEY=... npm run alerts:compare
+```
+
+Use `ALERT_COUNT=10000` only after checking latency, rate limits, and account spend. Jev pricing is configurable with `JEV_INPUT_PRICE_PER_MTOK` and `JEV_OUTPUT_PRICE_PER_MTOK`; local Jev cost is reported as zero API cost and excludes hardware. GPT-5.6 Luna cost is calculated from returned input/output usage using the rates in the script.
 
 ## Development loop
 

@@ -30,6 +30,39 @@ The mock run requires no credentials, model download, or network service. It wri
 
 For hosted or local-model runs, follow [`SETUP.md`](SETUP.md).
 
+## What Jev is
+
+Jev is TypeSafe AI's hosted System One decision model/service: you send state and typed questions, and it returns structured answers. `@typesafe-ai/sdk` is the client library. Jev is not Ollama and is not a general application framework; this repository uses the SDK to compare Jev with local Ollama models and GPT-5.6 Luna.
+
+## Ollama validation
+
+The current local Ollama inventory contains three generative models and one embedding model. Run the generative models with:
+
+```sh
+ALERT_COUNT=10 ALERT_CONCURRENCY=2 npm run alerts:ollama
+```
+
+The smoke report is [`reports/alert-10-ollama.md`](reports/alert-10-ollama.md). The 10-alert result was 50% for `gemma3:4b`, 20% for `tinyllama:latest`, and 100% for `brnpistone/Qwen3-4B-AgentCoder-q5-k-m:latest`; the Qwen run averaged about 23.55 seconds per alert. `nomic-embed-text:v1.5` is skipped because it produces embeddings rather than classifications.
+
+This is a wiring and smoke validation, not a completed 10k local inference run. At the observed Qwen latency, 10k alerts with concurrency 2 would take roughly 33 hours. The deterministic 10k rule-based baseline is [`reports/alert-10000-mock.md`](reports/alert-10000-mock.md).
+
+The same harness supports the full deterministic stream, but run cost here means GPU time rather than API spend:
+
+```sh
+ALERT_COUNT=10000 ALERT_CONCURRENCY=2 npm run alerts:ollama
+```
+
+The 10k GPT-5.6 Luna dry-run estimate is in [`reports/alert-10000-estimate.md`](reports/alert-10000-estimate.md). It uses the standard rates of $0.20 per 1M input tokens and $1.20 per 1M output tokens; live usage is read from the API response.
+
+To run the paid providers, set the required credentials and start with a small count:
+
+```sh
+ALERT_COUNT=100 TYPESAFE_API_KEY=... npm run alerts:jev
+ALERT_COUNT=100 OPENAI_API_KEY=... npm run alerts:openai
+```
+
+Run `npm run alerts:compare` only after both providers are configured; it executes both against the same generated stream.
+
 ## Repository layout
 
 | Path | Purpose |
@@ -40,6 +73,7 @@ For hosted or local-model runs, follow [`SETUP.md`](SETUP.md).
 | `experiments/jev/ANALYSIS.md` | Results, interpretation, and upgrade path |
 | `reports/` | Checked-in example outputs |
 | `SETUP.md` | Installation, local model setup, and troubleshooting |
+| `reports/alert-10000-estimate.md` | 10k GPT-5.6 Luna token/cost estimate |
 
 ## Experiment protocol
 

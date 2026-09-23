@@ -8,6 +8,12 @@
   "scripts": {
     "benchmark": "node examples/jev-benchmark.mjs",
     "benchmark:mock": "node examples/jev-benchmark.mjs --mock",
+    "alerts:estimate": "node examples/alert-10k-compare.mjs --estimate",
+    "alerts:mock": "node examples/alert-10k-compare.mjs --mock",
+    "alerts:jev": "node examples/alert-10k-compare.mjs --provider=jev",
+    "alerts:openai": "node examples/alert-10k-compare.mjs --provider=openai",
+    "alerts:ollama": "node examples/alert-10k-compare.mjs --provider=ollama",
+    "alerts:compare": "node examples/alert-10k-compare.mjs --provider=both",
     "kb": "TYPESAFE_BASE_URL=http://127.0.0.1:8765 TYPESAFE_API_KEY=local node examples/jev-kb.mjs",
     "local": "HF_HOME=.hf-cache local-jev/.venv/bin/local-jev serve --model nli-deberta-large",
     "local:benchmark": "TYPESAFE_BASE_URL=http://127.0.0.1:8765 TYPESAFE_API_KEY=local npm run benchmark"

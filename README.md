@@ -126,6 +126,19 @@ See the [Noul grouping report](reports/noul-grouping-sample.md). It validates th
 
 `answer.noul` is a probability of **yes**. Your code turns it into a decision with `probability >= threshold`. A lower threshold finds more matches but risks false merges; a higher threshold reduces false merges but fragments incidents. The threshold must be calibrated on labeled incidents—`0.5` is not automatically correct. In this experiment, `0.5` grouped nothing, while `0.1` grouped every sampled pair.
 
+## Auditable incident memory
+
+The next layer is a stateful, reversible workflow rather than a raw classifier. It uses deterministic rules to generate up to three candidate groups, asks Jev a Noul question for each candidate, and auto-merges only when both the score and the margin over the runner-up are high. Otherwise it creates a new group or records a human-review decision.
+
+```sh
+MEMORY_ALERT_COUNT=500 \
+TYPESAFE_BASE_URL=http://127.0.0.1:8765 \
+TYPESAFE_API_KEY=local \
+npm run alerts:memory
+```
+
+The [incident-memory report](reports/incident-memory-local-jev.md) and [audit ledger](reports/incident-memory-audit.json) record the policy, candidate recall, decisions, scores, margins, latency, and tokens. The conservative run made zero automatic merges because local Jev scores stayed below the merge policy. An exploratory lower-threshold shadow run produced 9 automatic merges, 39 reviews, and 100% precision on 9 synthetic merges; that result is not held-out calibration and is not a production recommendation.
+
 ## Run Ollama models
 
 List your local inventory:
@@ -192,6 +205,7 @@ Keep keys server-side. For GPT-5.6 Luna, the checked-in estimate is in [`reports
 | `examples/alert-data.mjs` | Shared deterministic alert generator |
 | `examples/alert-10k-compare.mjs` | Jev, OpenAI, Ollama, and mock comparison harness |
 | `examples/noul-grouping-sample.mjs` | Pairwise Noul grouping experiment |
+| `examples/incident-memory.mjs` | Candidate-based, margin-aware Jev grouping workflow |
 | `examples/jev-benchmark.mjs` | Original support-ticket routing benchmark |
 | `reports/` | Checked-in experiment outputs |
 | [`SETUP.md`](SETUP.md) | Installation and troubleshooting |

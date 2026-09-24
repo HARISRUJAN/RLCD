@@ -1,0 +1,4286 @@
+{
+  "model": "nli-deberta-large",
+  "seed": 42,
+  "policy": {
+    "AUTO_THRESHOLD": 0.8,
+    "REVIEW_THRESHOLD": 0.4,
+    "MIN_MARGIN": 0.15,
+    "MAX_CANDIDATES": 3
+  },
+  "decisions": [
+    {
+      "alertId": "alert-00001",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "mechanical:zone-05",
+      "seenRootCause": false,
+      "candidateCount": 0,
+      "candidateRootCauses": [],
+      "mergedRootCauses": [
+        "mechanical:zone-05"
+      ],
+      "assignedGroup": "incident-0001",
+      "bestScore": 0,
+      "margin": 1,
+      "latencyMs": 0,
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00002",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "power:zone-24",
+      "seenRootCause": false,
+      "candidateCount": 0,
+      "candidateRootCauses": [],
+      "mergedRootCauses": [
+        "power:zone-24"
+      ],
+      "assignedGroup": "incident-0002",
+      "bestScore": 0,
+      "margin": 1,
+      "latencyMs": 0,
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00003",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00004",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00005",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00006",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00007",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00008",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00009",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00010",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00011",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00012",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00013",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00014",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00015",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00016",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00017",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00018",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00019",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "power:zone-09",
+      "seenRootCause": false,
+      "candidateCount": 1,
+      "candidateRootCauses": [
+        "power:zone-24"
+      ],
+      "mergedRootCauses": [
+        "power:zone-09"
+      ],
+      "assignedGroup": "incident-0003",
+      "bestScore": 0.2105,
+      "margin": 0.2105,
+      "latencyMs": 173.57,
+      "inputTokens": 228,
+      "outputTokens": 1
+    },
+    {
+      "alertId": "alert-00020",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00021",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00022",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "smoke:zone-13",
+      "seenRootCause": false,
+      "candidateCount": 0,
+      "candidateRootCauses": [],
+      "mergedRootCauses": [
+        "smoke:zone-13"
+      ],
+      "assignedGroup": "incident-0004",
+      "bestScore": 0,
+      "margin": 1,
+      "latencyMs": 0,
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00023",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00024",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00025",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00026",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00027",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00028",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00029",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00030",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00031",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00032",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00033",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00034",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00035",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00036",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00037",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00038",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "power:zone-05",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "mechanical:zone-05",
+        "power:zone-09",
+        "power:zone-24"
+      ],
+      "mergedRootCauses": [
+        "power:zone-05"
+      ],
+      "assignedGroup": "incident-0005",
+      "bestScore": 0.228,
+      "margin": 0.0174,
+      "latencyMs": 697.47,
+      "inputTokens": 1269,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00039",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00040",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00041",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00042",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00043",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00044",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00045",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00046",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00047",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00048",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "pressure:zone-04",
+      "seenRootCause": false,
+      "candidateCount": 0,
+      "candidateRootCauses": [],
+      "mergedRootCauses": [
+        "pressure:zone-04"
+      ],
+      "assignedGroup": "incident-0006",
+      "bestScore": 0,
+      "margin": 1,
+      "latencyMs": 0,
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00049",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00050",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "smoke:zone-02",
+      "seenRootCause": false,
+      "candidateCount": 1,
+      "candidateRootCauses": [
+        "smoke:zone-13"
+      ],
+      "mergedRootCauses": [
+        "smoke:zone-02"
+      ],
+      "assignedGroup": "incident-0007",
+      "bestScore": 0.2254,
+      "margin": 0.2254,
+      "latencyMs": 111.06,
+      "inputTokens": 231,
+      "outputTokens": 1
+    },
+    {
+      "alertId": "alert-00051",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00052",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00053",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00054",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00055",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00056",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00057",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00058",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00059",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "thermal:zone-08",
+      "seenRootCause": false,
+      "candidateCount": 0,
+      "candidateRootCauses": [],
+      "mergedRootCauses": [
+        "thermal:zone-08"
+      ],
+      "assignedGroup": "incident-0008",
+      "bestScore": 0,
+      "margin": 1,
+      "latencyMs": 0,
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00060",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00061",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00062",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00063",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00064",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00065",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00066",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00067",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "thermal:zone-05",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "power:zone-05",
+        "mechanical:zone-05",
+        "thermal:zone-08"
+      ],
+      "mergedRootCauses": [
+        "thermal:zone-05"
+      ],
+      "assignedGroup": "incident-0009",
+      "bestScore": 0.2241,
+      "margin": 0.005299999999999999,
+      "latencyMs": 690.04,
+      "inputTokens": 1260,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00068",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00069",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00070",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00071",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00072",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00073",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00074",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00075",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00076",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00077",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00078",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00079",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00080",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00081",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00082",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00083",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00084",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00085",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00086",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00087",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00088",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00089",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00090",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00091",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00092",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00093",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00094",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00095",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00096",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00097",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00098",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00099",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00100",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00101",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00102",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00103",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "power:zone-18",
+      "seenRootCause": false,
+      "candidateCount": 0,
+      "candidateRootCauses": [],
+      "mergedRootCauses": [
+        "power:zone-18"
+      ],
+      "assignedGroup": "incident-0010",
+      "bestScore": 0,
+      "margin": 1,
+      "latencyMs": 0,
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00104",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00105",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00106",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00107",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00108",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00109",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00110",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00111",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00112",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00113",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00114",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00115",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00116",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00117",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00118",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "pressure:zone-07",
+      "seenRootCause": false,
+      "candidateCount": 1,
+      "candidateRootCauses": [
+        "pressure:zone-04"
+      ],
+      "mergedRootCauses": [
+        "pressure:zone-07"
+      ],
+      "assignedGroup": "incident-0011",
+      "bestScore": 0.2197,
+      "margin": 0.2197,
+      "latencyMs": 105.72,
+      "inputTokens": 221,
+      "outputTokens": 1
+    },
+    {
+      "alertId": "alert-00119",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "pressure:zone-14",
+      "seenRootCause": false,
+      "candidateCount": 2,
+      "candidateRootCauses": [
+        "pressure:zone-07",
+        "pressure:zone-04"
+      ],
+      "mergedRootCauses": [
+        "pressure:zone-14"
+      ],
+      "assignedGroup": "incident-0012",
+      "bestScore": 0.238,
+      "margin": 0.03169999999999998,
+      "latencyMs": 297.86,
+      "inputTokens": 630,
+      "outputTokens": 2
+    },
+    {
+      "alertId": "alert-00120",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "pressure:zone-06",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "pressure:zone-14",
+        "pressure:zone-07",
+        "pressure:zone-04"
+      ],
+      "mergedRootCauses": [
+        "pressure:zone-06"
+      ],
+      "assignedGroup": "incident-0013",
+      "bestScore": 0.2338,
+      "margin": 0.0232,
+      "latencyMs": 656.5,
+      "inputTokens": 1227,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00121",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00122",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00123",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00124",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00125",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00126",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00127",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00128",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00129",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "mechanical:zone-06",
+      "seenRootCause": false,
+      "candidateCount": 2,
+      "candidateRootCauses": [
+        "pressure:zone-06",
+        "mechanical:zone-05"
+      ],
+      "mergedRootCauses": [
+        "mechanical:zone-06"
+      ],
+      "assignedGroup": "incident-0014",
+      "bestScore": 0.2374,
+      "margin": 0.024499999999999994,
+      "latencyMs": 300.73,
+      "inputTokens": 642,
+      "outputTokens": 2
+    },
+    {
+      "alertId": "alert-00130",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "smoke:zone-05",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "thermal:zone-05",
+        "power:zone-05",
+        "mechanical:zone-05"
+      ],
+      "mergedRootCauses": [
+        "smoke:zone-05"
+      ],
+      "assignedGroup": "incident-0015",
+      "bestScore": 0.2303,
+      "margin": 0.001700000000000007,
+      "latencyMs": 696.05,
+      "inputTokens": 1269,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00131",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00132",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00133",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00134",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00135",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00136",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00137",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00138",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00139",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00140",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00141",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "pressure:zone-18",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "power:zone-18",
+        "pressure:zone-06",
+        "pressure:zone-14"
+      ],
+      "mergedRootCauses": [
+        "pressure:zone-18"
+      ],
+      "assignedGroup": "incident-0016",
+      "bestScore": 0.2379,
+      "margin": 0.01680000000000001,
+      "latencyMs": 663.8,
+      "inputTokens": 1239,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00142",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00143",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00144",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00145",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00146",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00147",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00148",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00149",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00150",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00151",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00152",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00153",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00154",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00155",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00156",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00157",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00158",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00159",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00160",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00161",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00162",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00163",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00164",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00165",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00166",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00167",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00168",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00169",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "power:zone-13",
+      "seenRootCause": false,
+      "candidateCount": 2,
+      "candidateRootCauses": [
+        "smoke:zone-13",
+        "power:zone-18"
+      ],
+      "mergedRootCauses": [
+        "power:zone-13"
+      ],
+      "assignedGroup": "incident-0017",
+      "bestScore": 0.22,
+      "margin": 0.02049999999999999,
+      "latencyMs": 315.71,
+      "inputTokens": 656,
+      "outputTokens": 2
+    },
+    {
+      "alertId": "alert-00170",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00171",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00172",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "mechanical:zone-16",
+      "seenRootCause": false,
+      "candidateCount": 2,
+      "candidateRootCauses": [
+        "mechanical:zone-06",
+        "mechanical:zone-05"
+      ],
+      "mergedRootCauses": [
+        "mechanical:zone-16"
+      ],
+      "assignedGroup": "incident-0018",
+      "bestScore": 0.2225,
+      "margin": 0.020300000000000012,
+      "latencyMs": 311.92,
+      "inputTokens": 650,
+      "outputTokens": 2
+    },
+    {
+      "alertId": "alert-00173",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00174",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00175",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00176",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "smoke:zone-21",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "smoke:zone-05",
+        "smoke:zone-02",
+        "smoke:zone-13"
+      ],
+      "mergedRootCauses": [
+        "smoke:zone-21"
+      ],
+      "assignedGroup": "incident-0019",
+      "bestScore": 0.2309,
+      "margin": 0.017799999999999983,
+      "latencyMs": 715.92,
+      "inputTokens": 1293,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00177",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00178",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00179",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00180",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00181",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00182",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00183",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00184",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00185",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00186",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00187",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00188",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "power:zone-22",
+      "seenRootCause": false,
+      "candidateCount": 2,
+      "candidateRootCauses": [
+        "power:zone-13",
+        "power:zone-18"
+      ],
+      "mergedRootCauses": [
+        "power:zone-22"
+      ],
+      "assignedGroup": "incident-0020",
+      "bestScore": 0.2171,
+      "margin": 0.015699999999999992,
+      "latencyMs": 315.87,
+      "inputTokens": 652,
+      "outputTokens": 2
+    },
+    {
+      "alertId": "alert-00189",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00190",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00191",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00192",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "smoke:zone-15",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "smoke:zone-21",
+        "smoke:zone-05",
+        "smoke:zone-02"
+      ],
+      "mergedRootCauses": [
+        "smoke:zone-15"
+      ],
+      "assignedGroup": "incident-0021",
+      "bestScore": 0.2226,
+      "margin": 0.01319999999999999,
+      "latencyMs": 714.61,
+      "inputTokens": 1293,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00193",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00194",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "power:zone-18",
+      "seenRootCause": true,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "pressure:zone-18",
+        "power:zone-18",
+        "power:zone-05"
+      ],
+      "mergedRootCauses": [
+        "power:zone-18"
+      ],
+      "assignedGroup": "incident-0022",
+      "bestScore": 0.2383,
+      "margin": 0.007700000000000012,
+      "latencyMs": 688.31,
+      "inputTokens": 1260,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00195",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00196",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "pressure:zone-10",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "pressure:zone-18",
+        "pressure:zone-06",
+        "pressure:zone-14"
+      ],
+      "mergedRootCauses": [
+        "pressure:zone-10"
+      ],
+      "assignedGroup": "incident-0023",
+      "bestScore": 0.2255,
+      "margin": 0.011899999999999994,
+      "latencyMs": 655.47,
+      "inputTokens": 1227,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00197",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00198",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00199",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00200",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00201",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00202",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00203",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00204",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00205",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00206",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00207",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00208",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00209",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00210",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00211",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00212",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00213",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00214",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00215",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00216",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00217",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00218",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00219",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00220",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00221",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00222",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00223",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00224",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00225",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00226",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00227",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00228",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00229",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00230",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00231",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00232",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00233",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00234",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00235",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00236",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00237",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00238",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00239",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00240",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00241",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00242",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00243",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00244",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "pressure:zone-08",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "thermal:zone-08",
+        "pressure:zone-10",
+        "pressure:zone-18"
+      ],
+      "mergedRootCauses": [
+        "pressure:zone-08"
+      ],
+      "assignedGroup": "incident-0024",
+      "bestScore": 0.2401,
+      "margin": 0.02300000000000002,
+      "latencyMs": 662.02,
+      "inputTokens": 1236,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00245",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00246",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00247",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00248",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00249",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00250",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00251",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00252",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00253",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00254",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00255",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00256",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00257",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00258",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "pressure:zone-18",
+      "seenRootCause": true,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "pressure:zone-18",
+        "power:zone-18",
+        "power:zone-18"
+      ],
+      "mergedRootCauses": [
+        "pressure:zone-18"
+      ],
+      "assignedGroup": "incident-0025",
+      "bestScore": 0.2353,
+      "margin": 0.008800000000000002,
+      "latencyMs": 673.27,
+      "inputTokens": 1251,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00259",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00260",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00261",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00262",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00263",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00264",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00265",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00266",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "mechanical:zone-19",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "mechanical:zone-16",
+        "mechanical:zone-06",
+        "mechanical:zone-05"
+      ],
+      "mergedRootCauses": [
+        "mechanical:zone-19"
+      ],
+      "assignedGroup": "incident-0026",
+      "bestScore": 0.2264,
+      "margin": 0.0179,
+      "latencyMs": 695.42,
+      "inputTokens": 1269,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00267",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00268",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00269",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "pressure:zone-14",
+      "seenRootCause": true,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "pressure:zone-14",
+        "pressure:zone-18",
+        "pressure:zone-08"
+      ],
+      "mergedRootCauses": [
+        "pressure:zone-14"
+      ],
+      "assignedGroup": "incident-0027",
+      "bestScore": 0.226,
+      "margin": 0.01570000000000002,
+      "latencyMs": 652.64,
+      "inputTokens": 1227,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00270",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00271",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00272",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00273",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00274",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "smoke:zone-06",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "mechanical:zone-06",
+        "pressure:zone-06",
+        "smoke:zone-15"
+      ],
+      "mergedRootCauses": [
+        "smoke:zone-06"
+      ],
+      "assignedGroup": "incident-0028",
+      "bestScore": 0.2303,
+      "margin": 0.004799999999999999,
+      "latencyMs": 693.56,
+      "inputTokens": 1269,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00275",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00276",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "smoke:zone-20",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "smoke:zone-06",
+        "smoke:zone-15",
+        "smoke:zone-21"
+      ],
+      "mergedRootCauses": [
+        "smoke:zone-20"
+      ],
+      "assignedGroup": "incident-0029",
+      "bestScore": 0.2292,
+      "margin": 0.01679999999999998,
+      "latencyMs": 716,
+      "inputTokens": 1293,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00277",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00278",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00279",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00280",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00281",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00282",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00283",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00284",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00285",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00286",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00287",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00288",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00289",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00290",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00291",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00292",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00293",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00294",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00295",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00296",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00297",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00298",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00299",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00300",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "smoke:zone-24",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "power:zone-24",
+        "smoke:zone-20",
+        "smoke:zone-06"
+      ],
+      "mergedRootCauses": [
+        "smoke:zone-24"
+      ],
+      "assignedGroup": "incident-0030",
+      "bestScore": 0.2444,
+      "margin": 0.017699999999999994,
+      "latencyMs": 710.64,
+      "inputTokens": 1287,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00301",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "power:zone-16",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "mechanical:zone-16",
+        "power:zone-22",
+        "power:zone-13"
+      ],
+      "mergedRootCauses": [
+        "power:zone-16"
+      ],
+      "assignedGroup": "incident-0031",
+      "bestScore": 0.2307,
+      "margin": 0.00899999999999998,
+      "latencyMs": 697.79,
+      "inputTokens": 1272,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00302",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00303",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00304",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00305",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "pressure:zone-08",
+      "seenRootCause": true,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "pressure:zone-08",
+        "thermal:zone-08",
+        "pressure:zone-14"
+      ],
+      "mergedRootCauses": [
+        "pressure:zone-08"
+      ],
+      "assignedGroup": "incident-0032",
+      "bestScore": 0.2331,
+      "margin": 0.011300000000000004,
+      "latencyMs": 658.92,
+      "inputTokens": 1233,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00306",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00307",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00308",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00309",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00310",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00311",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00312",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00313",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00314",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00315",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00316",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00317",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00318",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00319",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00320",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00321",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00322",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00323",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00324",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00325",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00326",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00327",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00328",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00329",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00330",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00331",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00332",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00333",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00334",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00335",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00336",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00337",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00338",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00339",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00340",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00341",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00342",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00343",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00344",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00345",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00346",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00347",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "power:zone-14",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "pressure:zone-14",
+        "pressure:zone-14",
+        "power:zone-16"
+      ],
+      "mergedRootCauses": [
+        "power:zone-14"
+      ],
+      "assignedGroup": "incident-0033",
+      "bestScore": 0.2506,
+      "margin": 0.021900000000000003,
+      "latencyMs": 668.75,
+      "inputTokens": 1245,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00348",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "thermal:zone-12",
+      "seenRootCause": false,
+      "candidateCount": 2,
+      "candidateRootCauses": [
+        "thermal:zone-05",
+        "thermal:zone-08"
+      ],
+      "mergedRootCauses": [
+        "thermal:zone-12"
+      ],
+      "assignedGroup": "incident-0034",
+      "bestScore": 0.2184,
+      "margin": 0.008200000000000013,
+      "latencyMs": 300.72,
+      "inputTokens": 642,
+      "outputTokens": 2
+    },
+    {
+      "alertId": "alert-00349",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00350",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00351",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "power:zone-09",
+      "seenRootCause": true,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "power:zone-09",
+        "power:zone-18",
+        "power:zone-05"
+      ],
+      "mergedRootCauses": [
+        "power:zone-09"
+      ],
+      "assignedGroup": "incident-0035",
+      "bestScore": 0.2515,
+      "margin": 0.0174,
+      "latencyMs": 696.95,
+      "inputTokens": 1272,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00352",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00353",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "power:zone-06",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "smoke:zone-06",
+        "mechanical:zone-06",
+        "pressure:zone-06"
+      ],
+      "mergedRootCauses": [
+        "power:zone-06"
+      ],
+      "assignedGroup": "incident-0036",
+      "bestScore": 0.2332,
+      "margin": 0.016499999999999987,
+      "latencyMs": 692.3,
+      "inputTokens": 1266,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00354",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00355",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00356",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "thermal:zone-00",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "thermal:zone-12",
+        "thermal:zone-05",
+        "thermal:zone-08"
+      ],
+      "mergedRootCauses": [
+        "thermal:zone-00"
+      ],
+      "assignedGroup": "incident-0037",
+      "bestScore": 0.2353,
+      "margin": 0.0184,
+      "latencyMs": 674.01,
+      "inputTokens": 1251,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00357",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00358",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00359",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00360",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00361",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "power:zone-12",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "thermal:zone-12",
+        "power:zone-09",
+        "power:zone-18"
+      ],
+      "mergedRootCauses": [
+        "power:zone-12"
+      ],
+      "assignedGroup": "incident-0038",
+      "bestScore": 0.239,
+      "margin": 0.0030000000000000027,
+      "latencyMs": 691.34,
+      "inputTokens": 1266,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00362",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00363",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00364",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00365",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00366",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00367",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00368",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00369",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00370",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00371",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00372",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00373",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00374",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00375",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00376",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00377",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00378",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00379",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00380",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00381",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00382",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00383",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00384",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "mechanical:zone-17",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "mechanical:zone-19",
+        "mechanical:zone-16",
+        "mechanical:zone-06"
+      ],
+      "mergedRootCauses": [
+        "mechanical:zone-17"
+      ],
+      "assignedGroup": "incident-0039",
+      "bestScore": 0.2387,
+      "margin": 0.0257,
+      "latencyMs": 697.87,
+      "inputTokens": 1269,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00385",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00386",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00387",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00388",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "smoke:zone-20",
+      "seenRootCause": true,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "smoke:zone-20",
+        "smoke:zone-24",
+        "smoke:zone-06"
+      ],
+      "mergedRootCauses": [
+        "smoke:zone-20"
+      ],
+      "assignedGroup": "incident-0040",
+      "bestScore": 0.2379,
+      "margin": 0.009399999999999992,
+      "latencyMs": 715.55,
+      "inputTokens": 1293,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00389",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00390",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00391",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00392",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00393",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00394",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00395",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00396",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00397",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00398",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00399",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00400",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00401",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00402",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00403",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00404",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00405",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00406",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00407",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00408",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00409",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00410",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00411",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00412",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00413",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00414",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00415",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00416",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00417",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00418",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00419",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00420",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00421",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00422",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00423",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00424",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00425",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00426",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00427",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "smoke:zone-22",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "power:zone-22",
+        "smoke:zone-20",
+        "smoke:zone-24"
+      ],
+      "mergedRootCauses": [
+        "smoke:zone-22"
+      ],
+      "assignedGroup": "incident-0041",
+      "bestScore": 0.2311,
+      "margin": 0.01630000000000001,
+      "latencyMs": 710.66,
+      "inputTokens": 1287,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00428",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00429",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "power:zone-12",
+      "seenRootCause": true,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "power:zone-12",
+        "thermal:zone-12",
+        "power:zone-06"
+      ],
+      "mergedRootCauses": [
+        "power:zone-12"
+      ],
+      "assignedGroup": "incident-0042",
+      "bestScore": 0.2525,
+      "margin": 0.01150000000000001,
+      "latencyMs": 691.42,
+      "inputTokens": 1266,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00430",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00431",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00432",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "power:zone-13",
+      "seenRootCause": true,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "power:zone-13",
+        "smoke:zone-13",
+        "power:zone-12"
+      ],
+      "mergedRootCauses": [
+        "power:zone-13"
+      ],
+      "assignedGroup": "incident-0043",
+      "bestScore": 0.2308,
+      "margin": 0.016100000000000003,
+      "latencyMs": 703.69,
+      "inputTokens": 1278,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00433",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00434",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00435",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00436",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00437",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "thermal:zone-24",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "smoke:zone-24",
+        "power:zone-24",
+        "thermal:zone-00"
+      ],
+      "mergedRootCauses": [
+        "thermal:zone-24"
+      ],
+      "assignedGroup": "incident-0044",
+      "bestScore": 0.2209,
+      "margin": 0.007200000000000012,
+      "latencyMs": 690.17,
+      "inputTokens": 1263,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00438",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00439",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00440",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "power:zone-06",
+      "seenRootCause": true,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "power:zone-06",
+        "smoke:zone-06",
+        "mechanical:zone-06"
+      ],
+      "mergedRootCauses": [
+        "power:zone-06"
+      ],
+      "assignedGroup": "incident-0045",
+      "bestScore": 0.2303,
+      "margin": 0.011099999999999999,
+      "latencyMs": 701.75,
+      "inputTokens": 1278,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00441",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00442",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00443",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00444",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00445",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00446",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00447",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00448",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00449",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00450",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00451",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00452",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00453",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "mechanical:zone-16",
+      "seenRootCause": true,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "mechanical:zone-16",
+        "power:zone-16",
+        "mechanical:zone-17"
+      ],
+      "mergedRootCauses": [
+        "mechanical:zone-16"
+      ],
+      "assignedGroup": "incident-0046",
+      "bestScore": 0.2431,
+      "margin": 0.003400000000000014,
+      "latencyMs": 698.47,
+      "inputTokens": 1272,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00454",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00455",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00456",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00457",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00458",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00459",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00460",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "power:zone-04",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "pressure:zone-04",
+        "power:zone-12",
+        "power:zone-09"
+      ],
+      "mergedRootCauses": [
+        "power:zone-04"
+      ],
+      "assignedGroup": "incident-0047",
+      "bestScore": 0.2478,
+      "margin": 0.026599999999999985,
+      "latencyMs": 688.19,
+      "inputTokens": 1260,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00461",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00462",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00463",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00464",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00465",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00466",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00467",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00468",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00469",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00470",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00471",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00472",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00473",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "pressure:zone-10",
+      "seenRootCause": true,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "pressure:zone-10",
+        "pressure:zone-08",
+        "pressure:zone-14"
+      ],
+      "mergedRootCauses": [
+        "pressure:zone-10"
+      ],
+      "assignedGroup": "incident-0048",
+      "bestScore": 0.2301,
+      "margin": 0.019199999999999995,
+      "latencyMs": 652.95,
+      "inputTokens": 1224,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00474",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00475",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00476",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "mechanical:zone-12",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "power:zone-12",
+        "power:zone-12",
+        "thermal:zone-12"
+      ],
+      "mergedRootCauses": [
+        "mechanical:zone-12"
+      ],
+      "assignedGroup": "incident-0049",
+      "bestScore": 0.2338,
+      "margin": 0.0006000000000000172,
+      "latencyMs": 693.19,
+      "inputTokens": 1266,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00477",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "power:zone-00",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "thermal:zone-00",
+        "power:zone-06",
+        "power:zone-13"
+      ],
+      "mergedRootCauses": [
+        "power:zone-00"
+      ],
+      "assignedGroup": "incident-0050",
+      "bestScore": 0.2349,
+      "margin": 0.015499999999999986,
+      "latencyMs": 690.84,
+      "inputTokens": 1266,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00478",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00479",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00480",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00481",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00482",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00483",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00484",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00485",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00486",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00487",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00488",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00489",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00490",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00491",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00492",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00493",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "power:zone-01",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "power:zone-00",
+        "power:zone-06",
+        "power:zone-13"
+      ],
+      "mergedRootCauses": [
+        "power:zone-01"
+      ],
+      "assignedGroup": "incident-0051",
+      "bestScore": 0.2359,
+      "margin": 0.014899999999999997,
+      "latencyMs": 696.75,
+      "inputTokens": 1272,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00494",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00495",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00496",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    },
+    {
+      "alertId": "alert-00497",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "smoke:zone-09",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "power:zone-09",
+        "power:zone-09",
+        "smoke:zone-22"
+      ],
+      "mergedRootCauses": [
+        "smoke:zone-09"
+      ],
+      "assignedGroup": "incident-0052",
+      "bestScore": 0.2266,
+      "margin": 0.008300000000000002,
+      "latencyMs": 706.54,
+      "inputTokens": 1281,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00498",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "smoke:zone-16",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "mechanical:zone-16",
+        "power:zone-16",
+        "mechanical:zone-16"
+      ],
+      "mergedRootCauses": [
+        "smoke:zone-16"
+      ],
+      "assignedGroup": "incident-0053",
+      "bestScore": 0.2374,
+      "margin": 0.005700000000000011,
+      "latencyMs": 701.23,
+      "inputTokens": 1275,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00499",
+      "actionable": true,
+      "action": "new_incident",
+      "expectedRootCause": "mechanical:zone-23",
+      "seenRootCause": false,
+      "candidateCount": 3,
+      "candidateRootCauses": [
+        "mechanical:zone-12",
+        "mechanical:zone-16",
+        "mechanical:zone-17"
+      ],
+      "mergedRootCauses": [
+        "mechanical:zone-23"
+      ],
+      "assignedGroup": "incident-0054",
+      "bestScore": 0.2392,
+      "margin": 0.002899999999999986,
+      "latencyMs": 698.4,
+      "inputTokens": 1272,
+      "outputTokens": 3
+    },
+    {
+      "alertId": "alert-00500",
+      "actionable": false,
+      "action": "filtered",
+      "inputTokens": 0,
+      "outputTokens": 0
+    }
+  ]
+}

@@ -95,6 +95,14 @@ GROUP_SAMPLE_PAIRS=100 ALERT_CONCURRENCY=4 TYPESAFE_BASE_URL=http://127.0.0.1:87
 
 The sample uses a hidden synthetic root-cause family only as an evaluation oracle. It is not sent to Jev and does not represent a real causal label.
 
+Run the auditable incident-memory workflow:
+
+```sh
+MEMORY_ALERT_COUNT=500 TYPESAFE_BASE_URL=http://127.0.0.1:8765 TYPESAFE_API_KEY=local npm run alerts:memory
+```
+
+It writes `reports/incident-memory-local-jev.md` and `reports/incident-memory-audit.json`. The default policy is deliberately conservative: high score plus a margin over the next candidate is required for automatic merging; all other cases become a new incident or human review.
+
 The model cache is stored under `.hf-cache/`; both it and `local-jev/` are ignored.
 
 ## Run the installed Ollama models

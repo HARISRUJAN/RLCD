@@ -92,6 +92,18 @@ For actual clustering, pairwise F1 is not enough. Evaluate the final clusters wi
 
 Hard safety rules should not depend on Jev. Jev should not be asked to prove a root cause from alert text alone. Provide the relevant topology, recent alerts, deployment changes, logs, and candidate causes.
 
+## The useful contribution: incident memory with abstention
+
+The most defensible contribution in this repository is not a new model. It is a control layer around a typed decision model, implemented in [`examples/incident-memory.mjs`](examples/incident-memory.mjs) with a checked-in [decision report](reports/incident-memory-local-jev.md) and [audit ledger](reports/incident-memory-audit.json):
+
+1. deterministic correlation narrows the search to a few candidates;
+2. Jev scores each candidate with an explicit Noul question;
+3. the policy requires both a high score and a margin over the runner-up;
+4. weak or ambiguous decisions are not merged automatically;
+5. every decision is written to an audit ledger with its candidates, score, margin, threshold, latency, and token usage.
+
+On 500 generated alerts, 54 were actionable and 48 required Jev calls. Candidate recall was 100% for the 11 alerts whose root cause had already appeared. The conservative policy made zero automatic merges because the local model scores remained low. A separate exploratory lower-threshold shadow policy made 9 automatic merges and routed 39 cases to review, with 100% precision on the nine synthetic merges. That is a safety-policy observation, not a validated production threshold.
+
 ## Limitations and next experiment
 
 The next credible study needs historical alerts with confirmed `incident_id` and root-cause labels. Split by incident or time rather than randomly splitting alerts. Compare deterministic correlation, similarity search, local Jev, and hosted Jev on the same candidate groups.

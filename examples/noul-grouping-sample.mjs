@@ -10,7 +10,7 @@ const CONCURRENCY = Number(process.env.ALERT_CONCURRENCY ?? 4);
 const SEED = Number(process.env.ALERT_SEED ?? 42);
 const THRESHOLDS = [0.1, 0.3, 0.5, 0.7, 0.9];
 const question = noul(
-  "Are these two microcontroller alerts manifestations of the same underlying hardware root-cause family and safe to group into one incident? Consider sensor type, device zone, signal pattern, and timing."
+  "Are these two service-health alerts manifestations of the same underlying service-failure family and safe to group into one incident? Consider metric, service region, signal pattern, and timing."
 );
 
 function percentile(values, p) {
@@ -65,15 +65,15 @@ function samplePairs(alerts, count, seed) {
 function alertState(alert) {
   return {
     id: alert.id,
-    device: alert.device,
-    zone: alert.zone,
-    sensor: alert.sensor,
+    service: alert.service,
+    region: alert.region,
+    metric: alert.metric,
     value: alert.value,
     unit: alert.unit,
     normal_range: [alert.normalMin, alert.normalMax],
     timestamp: alert.timestamp,
-    battery: alert.battery,
-    rssi: alert.rssi,
+    throughput: alert.throughput,
+    availability: alert.availability,
   };
 }
 
@@ -126,7 +126,7 @@ function report(alerts, pairs, results, model) {
     "",
     "## Result",
     "",
-    "The experiment asks a Noul question for each pair. The synthetic oracle labels two incident alerts as the same root-cause family when their hidden family is the same sensor class and device zone. The oracle is evaluation-only and is never sent to Jev.",
+    "The experiment asks a Noul question for each pair. The synthetic oracle labels two incident alerts as the same root-cause family when their hidden family is the same metric class and service region. The oracle is evaluation-only and is never sent to Jev.",
     "",
     "| Noul threshold | Accuracy | Precision | Recall | F1 | Predicted same | Avg ms | P95 ms | Input tokens | Output tokens |",
     "|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",

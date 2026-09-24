@@ -1,11 +1,11 @@
-# 10,000 microcontroller alert comparison
+# 10,000 service-health alert comparison
 
 Alerts: **10,000**
 Seed: **42**
 Incident rate: **11.58%**
-Generated: **2026-09-23T17:15:08.260Z**
+Generated: **2026-09-24T15:25:48.379Z**
 
-The same deterministic alert stream is classified by each provider. A classification is an incident when the provider returns true (or a Jev Noul score at or above the configured threshold).
+The same deterministic service-health alert stream is classified by each provider. A classification is an incident when the provider returns true (or a Jev Noul score at or above the configured threshold).
 
 ## Comparison
 

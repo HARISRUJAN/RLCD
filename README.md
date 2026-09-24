@@ -4,7 +4,7 @@
 
 ### Typed decisions for alert routing and incident grouping
 
-Reproducible experiments comparing **local Jev**, **Laya**, **Ollama models**, and a **GPT-5.6 Luna estimate** on a deterministic microcontroller-alert stream.
+Reproducible experiments comparing **local Jev**, **Laya**, **Ollama models**, and a **GPT-5.6 Luna estimate** on a deterministic service-health alert stream.
 
 <p>
   <a href="JEV_CHEATSHEET.md"><strong>Read the Jev cheatsheet</strong></a> ·
@@ -20,7 +20,7 @@ Reproducible experiments comparing **local Jev**, **Laya**, **Ollama models**, a
 
 </div>
 
-> **Current call:** keep hard sensor alarms deterministic. Use Jev as a second-stage semantic layer for ambiguous grouping, routing, severity, and human-review decisions.
+> **Current call:** keep hard service-health alarms deterministic. Use Jev as a second-stage semantic layer for ambiguous grouping, routing, severity, and human-review decisions.
 
 ## Why this repository exists
 
@@ -34,7 +34,7 @@ This repository tests that pattern against the same generated data and records a
 
 ### 01 · Same data
 
-10,000 deterministic microcontroller alerts with fixed seed `42`, sensor ranges, device metadata, and reproducible labels.
+10,000 deterministic service-health alerts with fixed seed `42`, metric ranges, service metadata, and reproducible labels.
 
 </td>
 <td width="50%" valign="top">
@@ -70,19 +70,19 @@ The 10-alert rows are directly comparable. The 10,000-alert rows show scale and 
 | Run | Classifier | Accuracy | Precision | Recall | F1 | Avg latency | Total tokens | Cost | Status |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---|
 | 10 alerts | [Local Jev](reports/alert-10-jev.md) | 80.00% | 0.00% | 0.00% | 0.00% | 72 ms | 446 | $0 | Measured |
-| 10 alerts | [Gemma 3 4B](reports/alert-10-ollama.md) | 50.00% | 28.57% | 100.00% | 44.44% | 3,612 ms | 1,060 | $0 | Measured |
-| 10 alerts | [TinyLlama](reports/alert-10-ollama.md) | 20.00% | 20.00% | 100.00% | 33.33% | 2,682 ms | 1,244 | $0 | Measured |
-| 10 alerts | [Qwen3 4B AgentCoder](reports/alert-10-ollama.md) | 100.00% | 100.00% | 100.00% | 100.00% | 23,554 ms | 6,315 | $0 | Measured |
-| 10 alerts | [Laya typed-decisions](reports/alert-10-laya.md) | 80.00% | 0.00% | 0.00% | 0.00% | 1,030 ms batch | 798 | $0 | Measured |
-| 10,000 alerts | [Local Jev](reports/alert-10000-jev.md) | 88.42% | 0.00% | 0.00% | 0.00% | 660 ms | 443,694 | $0 | Measured |
-| 10,000 alerts | [Laya typed-decisions](reports/alert-10000-laya.md) | 88.42% | 0.00% | 0.00% | 0.00% | 14.42 ms/alert batch | 797,756 | $0 | Measured |
-| 10,000 alerts | GPT-5.6 Luna | — | — | — | — | — | 851,840 | $0.250368 | Estimate; not run |
+| 10 alerts | [Gemma 3 4B](reports/alert-10-ollama.md) | 20.00% | 20.00% | 100.00% | 33.33% | 1,128 ms | 1,066 | $0 | Measured |
+| 10 alerts | [TinyLlama](reports/alert-10-ollama.md) | 80.00% | 0.00% | 0.00% | 0.00% | 319 ms | 1,278 | $0 | Measured |
+| 10 alerts | [Qwen3 4B AgentCoder](reports/alert-10-ollama.md) | 90.00% | 66.67% | 100.00% | 80.00% | 18,241 ms | 4,986 | $0 | Measured |
+| 10 alerts | [Laya typed-decisions](reports/alert-10-laya.md) | 80.00% | 0.00% | 0.00% | 0.00% | 256 ms batch | 793 | $0 | Measured |
+| 10,000 alerts | [Local Jev](reports/alert-10000-jev.md) | 88.42% | 0.00% | 0.00% | 0.00% | 683 ms | 434,299 | $0 | Measured |
+| 10,000 alerts | [Laya typed-decisions](reports/alert-10000-laya.md) | 88.42% | 0.00% | 0.00% | 0.00% | 14.00 ms/alert batch | 796,756 | $0 | Measured |
+| 10,000 alerts | GPT-5.6 Luna | — | — | — | — | — | 837,761 | $0.247552 | Estimate; not run |
 
 ### What the numbers mean
 
 - **Local Jev:** fast, but missed every synthetic incident at the default Noul threshold `0.5`.
-- **Laya:** matched Jev's 10k accuracy and also missed every synthetic incident at threshold `0.5`; its 10k timing is 144.2 seconds total / 14.42 ms per alert with MPS batching.
-- **Qwen3:** strongest 10-alert smoke result, but roughly 23.6 seconds per alert locally.
+- **Laya:** matched Jev's 10k accuracy and also missed every synthetic incident at threshold `0.5`; its 10k timing is 140.0 seconds total / 14.00 ms per alert with MPS batching.
+- **Qwen3:** strongest 10-alert smoke result at 90% accuracy, but roughly 18.2 seconds per alert locally.
 - **GPT-5.6 Luna:** token and cost estimate only; no live API call has been made.
 - **Synthetic labels:** useful for wiring and regression checks, not proof of production quality.
 
@@ -96,9 +96,9 @@ The 10-alert rows are directly comparable. The 10,000-alert rows show scale and 
 | Precision | 0.00% | 0.00% | 🟨 Tie |
 | Recall | 0.00% | 0.00% | 🟨 Tie |
 | F1 | 0.00% | 0.00% | 🟨 Tie |
-| Total tokens | **443,694** | 797,756 | 🟩 Jev* |
+| Total tokens | **434,299** | 796,756 | 🟩 Jev* |
 | Cost | $0 | $0 | 🟨 Tie |
-| Latency | 660.15 ms/request | 14.42 ms/alert batched | ⬜ N/A† |
+| Latency | 682.99 ms/request | 14.00 ms/alert batched | ⬜ N/A† |
 
 *Token totals use different provider accounting and are directional only. Jev latency is per request at concurrency 20; Laya latency is amortized MPS batch time, so it is not an apples-to-apples winner.
 

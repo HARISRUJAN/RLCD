@@ -20,23 +20,23 @@ function isActionable(alert) {
 function alertState(alert) {
   return {
     id: alert.id,
-    device: alert.device,
-    zone: alert.zone,
-    sensor: alert.sensor,
+    service: alert.service,
+    region: alert.region,
+    metric: alert.metric,
     value: alert.value,
     unit: alert.unit,
     normal_range: [alert.normalMin, alert.normalMax],
     timestamp: alert.timestamp,
-    battery: alert.battery,
-    rssi: alert.rssi,
+    throughput: alert.throughput,
+    availability: alert.availability,
   };
 }
 
 function groupState(group) {
   return {
     id: group.id,
-    zone: group.zone,
-    sensors: [...group.sensors],
+    region: group.region,
+    metrics: [...group.metrics],
     alert_count: group.alerts.length,
     last_sequence: group.lastSequence,
     recent_alerts: group.alerts.slice(-3).map((alert) => alert.text),
@@ -44,14 +44,14 @@ function groupState(group) {
 }
 
 function candidateScore(alert, group) {
-  return (group.zone === alert.zone ? 3 : 0)
-    + (group.sensors.has(alert.sensor) ? 2 : 0)
+  return (group.region === alert.region ? 3 : 0)
+    + (group.metrics.has(alert.metric) ? 2 : 0)
     - Math.min(Math.abs(alert.sequence - group.lastSequence) / 1000, 1);
 }
 
 function candidatesFor(alert, groups) {
   return groups
-    .filter((group) => group.zone === alert.zone || group.sensors.has(alert.sensor))
+    .filter((group) => group.region === alert.region || group.metrics.has(alert.metric))
     .sort((left, right) => candidateScore(alert, right) - candidateScore(alert, left))
     .slice(0, MAX_CANDIDATES);
 }
@@ -59,8 +59,8 @@ function candidatesFor(alert, groups) {
 function createGroup(alert, index, action) {
   return {
     id: `incident-${String(index).padStart(4, "0")}`,
-    zone: alert.zone,
-    sensors: new Set([alert.sensor]),
+    region: alert.region,
+    metrics: new Set([alert.metric]),
     alerts: [alert],
     lastSequence: alert.sequence,
     truthRootCauses: new Set(alert.rootCauseId ? [alert.rootCauseId] : []),
@@ -69,7 +69,7 @@ function createGroup(alert, index, action) {
 }
 
 function addToGroup(group, alert, action) {
-  group.sensors.add(alert.sensor);
+  group.metrics.add(alert.metric);
   group.alerts.push(alert);
   group.lastSequence = alert.sequence;
   if (alert.rootCauseId) group.truthRootCauses.add(alert.rootCauseId);

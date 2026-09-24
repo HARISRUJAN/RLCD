@@ -1,22 +1,22 @@
-# 100 microcontroller alert comparison
+# 100 service-health alert comparison
 
 Alerts: **100**
 Seed: **42**
 Incident rate: **9.00%**
-Generated: **2026-09-23T17:19:42.674Z**
+Generated: **2026-09-24T15:26:09.173Z**
 
-The same deterministic alert stream is classified by each provider. A classification is an incident when the provider returns true (or a Jev Noul score at or above the configured threshold).
+The same deterministic service-health alert stream is classified by each provider. A classification is an incident when the provider returns true (or a Jev Noul score at or above the configured threshold).
 
 ## Comparison
 
 | Provider | Accuracy | Precision | Recall | F1 | Avg ms | P95 ms | Input tokens | Output tokens | Total tokens | Cost |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| jev | 9.00% | 9.00% | 100.00% | 16.51% | 131.14 | 170.26 | 4,344 | 100 | 4,444 | $0.000000 |
+| jev | 91.00% | 0.00% | 0.00% | 0.00% | 1288.44 | 1869.74 | 4,248 | 100 | 4,348 | $0.000000 |
 
 ## Configuration
 
-- Alert concurrency: 4
-- Jev incident threshold: 0.1
+- Alert concurrency: 20
+- Jev incident threshold: 0.5
 - OpenAI model: gpt-5.6-luna
 - OpenAI reasoning effort: none
 - OpenAI price used: $0.2/1M input, $1.2/1M output; cached input $0.02/1M.

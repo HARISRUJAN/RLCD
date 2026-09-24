@@ -1,17 +1,17 @@
-# 10 microcontroller alert comparison — Laya
+# 10 service-health alert comparison — Laya
 
 Alerts: **10**
 Seed: **42**
 Incident rate: **20.00%**
-Generated: **2026-09-24T14:39:56.070Z**
+Generated: **2026-09-24T15:25:14.026Z**
 
-The same deterministic alert stream, Noul question, threshold, and labels are used by the Jev report. Laya runs the cases in batches.
+The same deterministic service-health alert stream, Noul question, threshold, and labels are used by the Jev report. Laya runs the cases in batches.
 
 ## Comparison
 
 | Provider | Accuracy | Precision | Recall | F1 | Batch ms | Amortized ms/alert | Input tokens | Output tokens | Total tokens | Cost |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| Laya (typed-decisions) | 80.00% | 0.00% | 0.00% | 0.00% | 1029.71 | 102.97 | 798 | 0 | 798 | $0.000000 |
+| Laya (typed-decisions) | 80.00% | 0.00% | 0.00% | 0.00% | 255.99 | 25.60 | 793 | 0 | 793 | $0.000000 |
 
 ## Configuration
 

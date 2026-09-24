@@ -1,17 +1,17 @@
-# 10 microcontroller alert comparison
+# 10 service-health alert comparison
 
 Alerts: **10**
 Seed: **42**
 Incident rate: **20.00%**
-Generated: **2026-09-23T17:25:50.071Z**
+Generated: **2026-09-24T15:16:44.443Z**
 
-The same deterministic alert stream is classified by each provider. A classification is an incident when the provider returns true (or a Jev Noul score at or above the configured threshold).
+The same deterministic service-health alert stream is classified by each provider. A classification is an incident when the provider returns true (or a Jev Noul score at or above the configured threshold).
 
 ## Comparison
 
 | Provider | Accuracy | Precision | Recall | F1 | Avg ms | P95 ms | Input tokens | Output tokens | Total tokens | Cost |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| jev | 80.00% | 0.00% | 0.00% | 0.00% | 72.24 | 105.72 | 436 | 10 | 446 | $0.000000 |
+| jev | 80.00% | 0.00% | 0.00% | 0.00% | 119.64 | 329.20 | 423 | 10 | 433 | $0.000000 |
 
 ## Configuration
 

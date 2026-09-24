@@ -1,19 +1,19 @@
-const sensors = [
-  ["temperature", "°C", 18, 28, (random) => random < 0.5 ? 72 + random * 18 : -18 + random * 8],
-  ["vibration", "g", 0.1, 0.8, (random) => 4 + random * 5],
-  ["voltage", "V", 3.1, 3.4, (random) => 2.2 + random * 0.5],
-  ["current", "A", 0.2, 1.2, (random) => 3.2 + random * 2.5],
-  ["pressure", "kPa", 98, 103, (random) => random < 0.5 ? 75 + random * 10 : 115 + random * 20],
-  ["smoke", "obscuration", 0.01, 0.15, (random) => 0.8 + random * 0.2],
+const metrics = [
+  ["latency", "ms", 80, 220, (random) => random < 0.5 ? 900 + random * 400 : 10 + random * 30],
+  ["error-rate", "%", 0.1, 2, (random) => 10 + random * 15],
+  ["queue-depth", "items", 10, 100, (random) => 300 + random * 250],
+  ["cpu-utilization", "%", 20, 70, (random) => 90 + random * 10],
+  ["request-rate", "req/s", 100, 500, (random) => 5 + random * 20],
+  ["cache-hit-rate", "%", 80, 99, (random) => 35 + random * 20],
 ];
 
 const rootCauseFamily = {
-  temperature: "thermal",
-  vibration: "mechanical",
-  voltage: "power",
-  current: "power",
-  pressure: "pressure",
-  smoke: "smoke",
+  latency: "performance",
+  "error-rate": "reliability",
+  "queue-depth": "capacity",
+  "cpu-utilization": "compute",
+  "request-rate": "traffic",
+  "cache-hit-rate": "caching",
 };
 
 export function rng(seed) {
@@ -27,32 +27,32 @@ export function rng(seed) {
 export function generateAlerts(count, seed) {
   const random = rng(seed);
   return Array.from({ length: count }, (_, index) => {
-    const [sensor, unit, normalMin, normalMax, incidentValue] = sensors[Math.floor(random() * sensors.length)];
+    const [metric, unit, normalMin, normalMax, incidentValue] = metrics[Math.floor(random() * metrics.length)];
     const incident = random() < 0.12;
     const value = incident
       ? incidentValue(random())
       : normalMin + random() * (normalMax - normalMin);
-    const deviceNumber = 1 + Math.floor(random() * 250);
-    const device = `mcu-${String(deviceNumber).padStart(3, "0")}`;
-    const zone = `zone-${String(Math.floor(deviceNumber / 10)).padStart(2, "0")}`;
-    const battery = (3.55 + random() * 0.6).toFixed(2);
-    const rssi = Math.round(-45 - random() * 45);
+    const serviceNumber = 1 + Math.floor(random() * 250);
+    const service = `svc-${String(serviceNumber).padStart(3, "0")}`;
+    const region = `region-${String(Math.floor(serviceNumber / 10)).padStart(2, "0")}`;
+    const throughput = Math.round(100 + random() * 900);
+    const availability = (99 + random()).toFixed(2);
     return {
       id: `alert-${String(index + 1).padStart(5, "0")}`,
-      device,
-      zone,
+      service,
+      region,
       sequence: index + 1,
       timestamp: new Date(Date.UTC(2026, 0, 1, 0, 0, index * 5)).toISOString(),
-      sensor,
+      metric,
       value: Number(value.toFixed(3)),
       unit,
       normalMin,
       normalMax,
-      battery,
-      rssi,
+      throughput,
+      availability,
       incident,
-      rootCauseId: incident ? `${rootCauseFamily[sensor]}:${zone}` : null,
-      text: `${device} ${sensor} alert: ${value.toFixed(3)} ${unit}; normal range ${normalMin}-${normalMax} ${unit}; battery ${battery} V; RSSI ${rssi} dBm.`,
+      rootCauseId: incident ? `${rootCauseFamily[metric]}:${region}` : null,
+      text: `${service} ${metric} alert: ${value.toFixed(3)} ${unit}; normal range ${normalMin}-${normalMax} ${unit}; throughput ${throughput} req/s; availability ${availability}%.`,
     };
   });
 }

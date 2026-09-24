@@ -17,10 +17,10 @@ const JEV_OUTPUT_PRICE = Number(process.env.JEV_OUTPUT_PRICE_PER_MTOK ?? 0);
 const OLLAMA_URL = process.env.OLLAMA_URL ?? "http://127.0.0.1:11434";
 const OLLAMA_MODELS_OVERRIDE = process.env.OLLAMA_MODELS?.split(",").map((model) => model.trim()).filter(Boolean);
 
-const incidentQuestion = noul("Does this microcontroller alert represent a real incident requiring operator action?");
+const incidentQuestion = noul("Does this service-health alert represent a real incident requiring operator action?");
 const OPENAI_INSTRUCTIONS = [
-  "Classify one microcontroller alert as an incident.",
-  "Return incident=true only when the sensor reading is outside the stated normal range or the alert clearly indicates a dangerous hardware condition.",
+  "Classify one service-health alert as an incident.",
+  "Return incident=true only when the metric is outside the stated normal range or the alert clearly indicates service degradation.",
   "Return JSON only.",
 ].join(" ");
 const OPENAI_SCHEMA = {
@@ -219,14 +219,14 @@ function estimateOpenAi(alerts) {
 
 function report(alerts, summaries, estimate) {
   const lines = [
-    `# ${alerts.length.toLocaleString()} microcontroller alert comparison`,
+    `# ${alerts.length.toLocaleString()} service-health alert comparison`,
     "",
     `Alerts: **${alerts.length.toLocaleString()}**`,
     `Seed: **${SEED}**`,
     `Incident rate: **${(alerts.filter((alert) => alert.incident).length / alerts.length * 100).toFixed(2)}%**`,
     `Generated: **${new Date().toISOString()}**`,
     "",
-    "The same deterministic alert stream is classified by each provider. A classification is an incident when the provider returns true (or a Jev Noul score at or above the configured threshold).",
+    "The same deterministic service-health alert stream is classified by each provider. A classification is an incident when the provider returns true (or a Jev Noul score at or above the configured threshold).",
     "",
     "## Comparison",
     "",

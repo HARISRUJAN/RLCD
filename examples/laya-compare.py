@@ -18,13 +18,13 @@ BATCH_SIZE = int(os.environ.get("LAYA_BATCH_SIZE", "32"))
 THRESHOLD = float(os.environ.get("INCIDENT_THRESHOLD", "0.5"))
 DEVICE = os.environ.get("LAYA_DEVICE")
 
-SENSORS = (
-    ("temperature", "°C", 18, 28),
-    ("vibration", "g", 0.1, 0.8),
-    ("voltage", "V", 3.1, 3.4),
-    ("current", "A", 0.2, 1.2),
-    ("pressure", "kPa", 98, 103),
-    ("smoke", "obscuration", 0.01, 0.15),
+METRICS = (
+    ("latency", "ms", 80, 220),
+    ("error-rate", "%", 0.1, 2),
+    ("queue-depth", "items", 10, 100),
+    ("cpu-utilization", "%", 20, 70),
+    ("request-rate", "req/s", 100, 500),
+    ("cache-hit-rate", "%", 80, 99),
 )
 
 
@@ -44,58 +44,58 @@ def js_round(value: float) -> int:
 def generate_alerts(count: int, seed: int) -> list[dict]:
     random = Rng(seed)
     families = {
-        "temperature": "thermal",
-        "vibration": "mechanical",
-        "voltage": "power",
-        "current": "power",
-        "pressure": "pressure",
-        "smoke": "smoke",
+        "latency": "performance",
+        "error-rate": "reliability",
+        "queue-depth": "capacity",
+        "cpu-utilization": "compute",
+        "request-rate": "traffic",
+        "cache-hit-rate": "caching",
     }
     alerts = []
     for index in range(count):
-        sensor, unit, normal_min, normal_max = SENSORS[int(random() * len(SENSORS))]
+        metric, unit, normal_min, normal_max = METRICS[int(random() * len(METRICS))]
         incident = random() < 0.12
         if incident:
             sample = random()
-            if sensor == "temperature":
-                value = 72 + sample * 18 if sample < 0.5 else -18 + sample * 8
-            elif sensor == "vibration":
-                value = 4 + sample * 5
-            elif sensor == "voltage":
-                value = 2.2 + sample * 0.5
-            elif sensor == "current":
-                value = 3.2 + sample * 2.5
-            elif sensor == "pressure":
-                value = 75 + sample * 10 if sample < 0.5 else 115 + sample * 20
+            if metric == "latency":
+                value = 900 + sample * 400 if sample < 0.5 else 10 + sample * 30
+            elif metric == "error-rate":
+                value = 10 + sample * 15
+            elif metric == "queue-depth":
+                value = 300 + sample * 250
+            elif metric == "cpu-utilization":
+                value = 90 + sample * 10
+            elif metric == "request-rate":
+                value = 5 + sample * 20
             else:
-                value = 0.8 + sample * 0.2
+                value = 35 + sample * 20
         else:
             value = normal_min + random() * (normal_max - normal_min)
-        device_number = 1 + int(random() * 250)
-        device = f"mcu-{device_number:03d}"
-        zone = f"zone-{device_number // 10:02d}"
-        battery = f"{3.55 + random() * 0.6:.2f}"
-        rssi = js_round(-45 - random() * 45)
+        service_number = 1 + int(random() * 250)
+        service = f"svc-{service_number:03d}"
+        region = f"region-{service_number // 10:02d}"
+        throughput = js_round(100 + random() * 900)
+        availability = f"{99 + random():.2f}"
         value_text = f"{value:.3f}"
         alerts.append(
             {
                 "id": f"alert-{index + 1:05d}",
-                "device": device,
-                "zone": zone,
+                "service": service,
+                "region": region,
                 "sequence": index + 1,
                 "timestamp": (
                     datetime(2026, 1, 1, tzinfo=timezone.utc) + timedelta(seconds=index * 5)
                 ).isoformat(timespec="milliseconds").replace("+00:00", "Z"),
-                "sensor": sensor,
+                "metric": metric,
                 "value": float(value_text),
                 "unit": unit,
                 "normalMin": normal_min,
                 "normalMax": normal_max,
-                "battery": battery,
-                "rssi": rssi,
+                "throughput": throughput,
+                "availability": availability,
                 "incident": incident,
-                "rootCauseId": f"{families[sensor]}:{zone}" if incident else None,
-                "text": f"{device} {sensor} alert: {value_text} {unit}; normal range {normal_min}-{normal_max} {unit}; battery {battery} V; RSSI {rssi} dBm.",
+                "rootCauseId": f"{families[metric]}:{region}" if incident else None,
+                "text": f"{service} {metric} alert: {value_text} {unit}; normal range {normal_min}-{normal_max} {unit}; throughput {throughput} req/s; availability {availability}%.",
             }
         )
     return alerts
@@ -125,14 +125,14 @@ def stats(predictions: list[dict]) -> dict:
 def render_report(alerts: list[dict], predictions: list[dict], elapsed_ms: float, device: str) -> str:
     summary = stats(predictions)
     lines = [
-        f"# {len(alerts):,} microcontroller alert comparison — Laya",
+        f"# {len(alerts):,} service-health alert comparison — Laya",
         "",
         f"Alerts: **{len(alerts):,}**",
         f"Seed: **{SEED}**",
         f"Incident rate: **{sum(alert['incident'] for alert in alerts) / len(alerts) * 100:.2f}%**",
         f"Generated: **{datetime.now(timezone.utc).isoformat(timespec='milliseconds').replace('+00:00', 'Z')}**",
         "",
-        "The same deterministic alert stream, Noul question, threshold, and labels are used by the Jev report. Laya runs the cases in batches.",
+        "The same deterministic service-health alert stream, Noul question, threshold, and labels are used by the Jev report. Laya runs the cases in batches.",
         "",
         "## Comparison",
         "",
@@ -162,7 +162,7 @@ def main() -> None:
     questions = {
         "incident": {
             "type": "noul",
-            "instructions": "Does this microcontroller alert represent a real incident requiring operator action?",
+            "instructions": "Does this service-health alert represent a real incident requiring operator action?",
         }
     }
     agent = laya.load("convaiinnovations/laya", subfolder="typed-decisions", device=DEVICE)

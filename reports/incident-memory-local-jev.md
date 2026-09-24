@@ -1,9 +1,9 @@
 # Jev incident memory report
 
-Generated: **2026-09-24T06:30:22.989Z**
+Generated: **2026-09-24T15:27:15.990Z**
 Alert stream: **500** alerts, seed **42**
 Actionable alerts: **54**
-Model: **nli-deberta-large**
+Model: **local Jev-compatible server**
 
 ## Policy
 
@@ -16,8 +16,8 @@ Model: **nli-deberta-large**
 
 | Metric | Result |
 |---|---:|
-| Candidate-eligible alerts | 11 |
-| Cold-start alerts | 43 |
+| Candidate-eligible alerts | 9 |
+| Cold-start alerts | 45 |
 | Candidate recall (eligible only) | 100.00% |
 | Groups created | 54 |
 | Automatic merges | 0 |
@@ -25,11 +25,11 @@ Model: **nli-deberta-large**
 | New-incident decisions | 54 |
 | Automatic-merge precision | n/a |
 | B-Cubed precision | 100.00% |
-| B-Cubed recall | 79.63% |
+| B-Cubed recall | 83.33% |
 | Jev calls | 48 |
-| Average Jev latency | 606.93 ms |
-| P95 Jev latency | 715.55 ms |
-| Input tokens | 53,848 |
+| Average Jev latency | 657.87 ms |
+| P95 Jev latency | 803.89 ms |
+| Input tokens | 53,758 |
 | Output tokens | 132 |
 
 ## Decision audit sample
@@ -38,16 +38,16 @@ Model: **nli-deberta-large**
 |---|---:|---|---:|---:|---|
 | alert-00001 | 0 | new_incident | 0.000 | 1.000 | incident-0001 |
 | alert-00002 | 0 | new_incident | 0.000 | 1.000 | incident-0002 |
-| alert-00019 | 1 | new_incident | 0.210 | 0.210 | incident-0003 |
+| alert-00019 | 1 | new_incident | 0.213 | 0.213 | incident-0003 |
 | alert-00022 | 0 | new_incident | 0.000 | 1.000 | incident-0004 |
-| alert-00038 | 3 | new_incident | 0.228 | 0.017 | incident-0005 |
+| alert-00038 | 3 | new_incident | 0.220 | 0.010 | incident-0005 |
 | alert-00048 | 0 | new_incident | 0.000 | 1.000 | incident-0006 |
-| alert-00050 | 1 | new_incident | 0.225 | 0.225 | incident-0007 |
+| alert-00050 | 1 | new_incident | 0.205 | 0.205 | incident-0007 |
 | alert-00059 | 0 | new_incident | 0.000 | 1.000 | incident-0008 |
-| alert-00067 | 3 | new_incident | 0.224 | 0.005 | incident-0009 |
+| alert-00067 | 3 | new_incident | 0.220 | 0.003 | incident-0009 |
 | alert-00103 | 0 | new_incident | 0.000 | 1.000 | incident-0010 |
-| alert-00118 | 1 | new_incident | 0.220 | 0.220 | incident-0011 |
-| alert-00119 | 2 | new_incident | 0.238 | 0.032 | incident-0012 |
+| alert-00118 | 1 | new_incident | 0.211 | 0.211 | incident-0011 |
+| alert-00119 | 2 | new_incident | 0.215 | 0.020 | incident-0012 |
 
 ## Interpretation
 

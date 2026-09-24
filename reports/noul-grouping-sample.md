@@ -1,21 +1,21 @@
 # Noul grouping sample
 
-Generated: **2026-09-23T17:40:57.149Z**
+Generated: **2026-09-24T15:26:27.516Z**
 Alert stream: **10,000** alerts, seed **42**
 Sample: **100** incident-alert pairs, balanced between same-root-cause and different-root-cause labels
 Model: **local-jev default** via local Jev-compatible server
 
 ## Result
 
-The experiment asks a Noul question for each pair. The synthetic oracle labels two incident alerts as the same root-cause family when their hidden family is the same sensor class and device zone. The oracle is evaluation-only and is never sent to Jev.
+The experiment asks a Noul question for each pair. The synthetic oracle labels two incident alerts as the same root-cause family when their hidden family is the same metric class and service region. The oracle is evaluation-only and is never sent to Jev.
 
 | Noul threshold | Accuracy | Precision | Recall | F1 | Predicted same | Avg ms | P95 ms | Input tokens | Output tokens |
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| 0.1 | 50.00% | 50.00% | 100.00% | 66.67% | 100 | 457.43 | 577.78 | 24,186 | 100 |
-| 0.3 | 36.00% | 37.50% | 42.00% | 39.62% | 56 | 457.43 | 577.78 | 24,186 | 100 |
-| 0.5 | 50.00% | 0.00% | 0.00% | 0.00% | 0 | 457.43 | 577.78 | 24,186 | 100 |
-| 0.7 | 50.00% | 0.00% | 0.00% | 0.00% | 0 | 457.43 | 577.78 | 24,186 | 100 |
-| 0.9 | 50.00% | 0.00% | 0.00% | 0.00% | 0 | 457.43 | 577.78 | 24,186 | 100 |
+| 0.1 | 50.00% | 50.00% | 100.00% | 66.67% | 100 | 1011.88 | 1835.59 | 23,710 | 100 |
+| 0.3 | 50.00% | 0.00% | 0.00% | 0.00% | 0 | 1011.88 | 1835.59 | 23,710 | 100 |
+| 0.5 | 50.00% | 0.00% | 0.00% | 0.00% | 0 | 1011.88 | 1835.59 | 23,710 | 100 |
+| 0.7 | 50.00% | 0.00% | 0.00% | 0.00% | 0 | 1011.88 | 1835.59 | 23,710 | 100 |
+| 0.9 | 50.00% | 0.00% | 0.00% | 0.00% | 0 | 1011.88 | 1835.59 | 23,710 | 100 |
 
 ## Interpretation
 

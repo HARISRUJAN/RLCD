@@ -1,11 +1,11 @@
-# 10,000 microcontroller alert comparison
+# 10,000 service-health alert comparison
 
 Alerts: **10,000**
 Seed: **42**
 Incident rate: **11.58%**
-Generated: **2026-09-23T17:15:08.257Z**
+Generated: **2026-09-24T15:25:48.373Z**
 
-The same deterministic alert stream is classified by each provider. A classification is an incident when the provider returns true (or a Jev Noul score at or above the configured threshold).
+The same deterministic service-health alert stream is classified by each provider. A classification is an incident when the provider returns true (or a Jev Noul score at or above the configured threshold).
 
 ## Comparison
 
@@ -20,7 +20,7 @@ The same deterministic alert stream is classified by each provider. A classifica
 - OpenAI reasoning effort: none
 - OpenAI price used: $0.2/1M input, $1.2/1M output; cached input $0.02/1M.
 - Jev price used: $0/1M input, $0/1M output. Set JEV_INPUT_PRICE_PER_MTOK and JEV_OUTPUT_PRICE_PER_MTOK for hosted Jev pricing; local Jev API cost is otherwise reported as $0 excluding hardware.
-- OpenAI dry-run estimate: 771,840 input + 80,000 output = 851,840 tokens, approximately $0.250368.
+- OpenAI dry-run estimate: 757,761 input + 80,000 output = 837,761 tokens, approximately $0.247552.
 
 ## Limits
 

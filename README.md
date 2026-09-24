@@ -1,10 +1,10 @@
 <div align="center">
 
-# Jev Decision Experiment
+# RLCD
 
 ### Typed decisions for alert routing and incident grouping
 
-Reproducible experiments comparing **local Jev**, **Ollama models**, and a **GPT-5.6 Luna estimate** on a deterministic microcontroller-alert stream.
+Reproducible experiments comparing **local Jev**, **Laya**, **Ollama models**, and a **GPT-5.6 Luna estimate** on a deterministic microcontroller-alert stream.
 
 <p>
   <a href="JEV_CHEATSHEET.md"><strong>Read the Jev cheatsheet</strong></a> ·
@@ -14,7 +14,7 @@ Reproducible experiments comparing **local Jev**, **Ollama models**, and a **GPT
 </p>
 
 <img alt="Node.js 20+" src="https://img.shields.io/badge/Node.js-20%2B-339933?logo=node.js&logoColor=white">
-<img alt="Jev typed decisions" src="https://img.shields.io/badge/Jev-typed%20decisions-5B4BDB">
+<img alt="Jev and Laya typed decisions" src="https://img.shields.io/badge/Jev%20%2B%20Laya-typed%20decisions-5B4BDB">
 <img alt="Ollama local models" src="https://img.shields.io/badge/Ollama-local%20models-111111?logo=ollama&logoColor=white">
 <img alt="Status experimental" src="https://img.shields.io/badge/status-experimental-F59E0B">
 
@@ -73,12 +73,15 @@ The 10-alert rows are directly comparable. The 10,000-alert rows show scale and 
 | 10 alerts | [Gemma 3 4B](reports/alert-10-ollama.md) | 50.00% | 28.57% | 100.00% | 44.44% | 3,612 ms | 1,060 | $0 | Measured |
 | 10 alerts | [TinyLlama](reports/alert-10-ollama.md) | 20.00% | 20.00% | 100.00% | 33.33% | 2,682 ms | 1,244 | $0 | Measured |
 | 10 alerts | [Qwen3 4B AgentCoder](reports/alert-10-ollama.md) | 100.00% | 100.00% | 100.00% | 100.00% | 23,554 ms | 6,315 | $0 | Measured |
+| 10 alerts | [Laya typed-decisions](reports/alert-10-laya.md) | 80.00% | 0.00% | 0.00% | 0.00% | 1,030 ms batch | 798 | $0 | Measured |
 | 10,000 alerts | [Local Jev](reports/alert-10000-jev.md) | 88.42% | 0.00% | 0.00% | 0.00% | 660 ms | 443,694 | $0 | Measured |
+| 10,000 alerts | [Laya typed-decisions](reports/alert-10000-laya.md) | 88.42% | 0.00% | 0.00% | 0.00% | 14.42 ms/alert batch | 797,756 | $0 | Measured |
 | 10,000 alerts | GPT-5.6 Luna | — | — | — | — | — | 851,840 | $0.250368 | Estimate; not run |
 
 ### What the numbers mean
 
 - **Local Jev:** fast, but missed every synthetic incident at the default Noul threshold `0.5`.
+- **Laya:** matched Jev's 10k accuracy and also missed every synthetic incident at threshold `0.5`; its 10k timing is 144.2 seconds total / 14.42 ms per alert with MPS batching.
 - **Qwen3:** strongest 10-alert smoke result, but roughly 23.6 seconds per alert locally.
 - **GPT-5.6 Luna:** token and cost estimate only; no live API call has been made.
 - **Synthetic labels:** useful for wiring and regression checks, not proof of production quality.
@@ -96,6 +99,7 @@ The reports are organized as separate experiments rather than one leaderboard. S
 | E4 | 10k scale and hosted cost estimate | [10k Jev](reports/alert-10000-jev.md) · [Estimate](reports/alert-10000-estimate.md) |
 | E5 | Noul threshold sweep for grouping | [Grouping sample](reports/noul-grouping-sample.md) |
 | E6 | Auditable incident memory with abstention | [Decision report](reports/incident-memory-local-jev.md) · [Audit ledger](reports/incident-memory-audit.json) |
+| E7 | Same alert stream through Laya | [10-alert Laya](reports/alert-10-laya.md) · [10k Laya](reports/alert-10000-laya.md) |
 
 ## Quick start
 
@@ -177,6 +181,17 @@ ALERT_COUNT=10 ALERT_CONCURRENCY=2 npm run alerts:ollama
 ```
 
 See the [Ollama smoke report](reports/alert-10-ollama.md). The full 10k local run was not completed because the observed Qwen throughput would take roughly 33 hours at concurrency `2`.
+
+## Run Laya
+
+Laya uses the installed typed-decisions checkpoint and the same alert stream, Noul question, threshold, seed, and evaluation metrics as Jev:
+
+```sh
+source /Users/srujanreddy/Projects/laya/.venv/bin/activate
+ALERT_COUNT=10 npm run alerts:laya
+```
+
+The runner writes `reports/alert-10-laya.md`. Laya is evaluated in batches, so its report gives total batch time and amortized milliseconds per alert instead of per-request Jev latency.
 
 ## What Jev question should I use?
 

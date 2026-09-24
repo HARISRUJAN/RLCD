@@ -1,8 +1,8 @@
 {
-  "name": "jev-decision-experiment",
+  "name": "rlcd",
   "version": "1.0.0",
   "private": true,
-  "description": "Reproducible Jev structured-decision routing experiment",
+  "description": "Reproducible Jev and Laya structured-decision experiment",
   "type": "module",
   "engines": { "node": ">=20" },
   "scripts": {
@@ -13,6 +13,7 @@
     "alerts:jev": "node examples/alert-10k-compare.mjs --provider=jev",
     "alerts:openai": "node examples/alert-10k-compare.mjs --provider=openai",
     "alerts:ollama": "node examples/alert-10k-compare.mjs --provider=ollama",
+    "alerts:laya": "python3 examples/laya-compare.py",
     "alerts:noul-group": "node examples/noul-grouping-sample.mjs",
     "alerts:memory": "node examples/incident-memory.mjs",
     "alerts:compare": "node examples/alert-10k-compare.mjs --provider=both",

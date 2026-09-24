@@ -19,8 +19,8 @@ python3 --version
 ## Install
 
 ```sh
-git clone https://github.com/HARISRUJAN/jev-decision-experiment.git
-cd jev-decision-experiment
+git clone https://github.com/HARISRUJAN/RLCD.git
+cd RLCD
 npm install
 ```
 
@@ -141,6 +141,17 @@ OLLAMA_URL=http://127.0.0.1:11434 npm run alerts:ollama
 ```
 
 Ollama reports local prompt/evaluation token counts when available. Its API cost is `$0`; report hardware, model load time, and GPU time separately.
+
+## Run the installed Laya model
+
+Laya is optional and uses the existing Python virtual environment at `/Users/srujanreddy/Projects/laya/.venv` in this workspace:
+
+```sh
+source /Users/srujanreddy/Projects/laya/.venv/bin/activate
+ALERT_COUNT=10 npm run alerts:laya
+```
+
+The first run may download the `convaiinnovations/laya` typed-decisions checkpoint. The report is `reports/alert-10-laya.md`; compare it with `reports/alert-10-jev.md` and `reports/alert-10-ollama.md`.
 
 ## Compare Jev and GPT-5.6 Luna
 

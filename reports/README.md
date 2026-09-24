@@ -13,6 +13,7 @@ This repository contains separate experiments, not one combined leaderboard. Eac
 | E4 | What happens at 10,000 alerts, and what would a hosted run cost? | `ALERT_COUNT=10000 npm run alerts:jev` and `npm run alerts:estimate` | [Local Jev](alert-10000-jev.md), [cost estimate](alert-10000-estimate.md) |
 | E5 | Is a Noul threshold calibrated for pairwise incident grouping? | `npm run alerts:noul-group` | [Threshold sweep](noul-grouping-sample.md) |
 | E6 | Can Jev act as a conservative, auditable incident-memory layer? | `npm run alerts:memory` | [Decision report](incident-memory-local-jev.md), [audit ledger](incident-memory-audit.json) |
+| E7 | How does the installed Laya typed-decisions model behave on the exact Jev alert stream? | `ALERT_COUNT=10000 npm run alerts:laya` | [10-alert report](alert-10-laya.md), [10k report](alert-10000-laya.md) |
 
 ## What each experiment establishes
 
@@ -43,6 +44,10 @@ The balanced pair sample shows that `0.5` is not automatically calibrated: the l
 ### E6 — Auditable incident memory
 
 This is the repository’s main workflow experiment. Deterministic rules produce a small candidate set; Jev scores each candidate; an application policy uses both score and margin; uncertain cases remain reviewable; and every decision is recorded. On the default 500-alert run, candidate recall was 100% for the 11 warm-start cases, while the conservative policy made zero automatic merges. The lower-threshold shadow run is exploratory and not held-out validation.
+
+### E7 — Laya comparison
+
+Laya matched local Jev’s 88.42% accuracy on the 10,000-alert stream and predicted zero incidents at the default `0.5` threshold. Its typed-decisions model used 797,756 input tokens and 144.2 seconds total on MPS with batch size 128; this batch timing is not directly comparable to Jev’s per-request latency.
 
 ## Evidence rules
 

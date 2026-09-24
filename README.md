@@ -10,7 +10,7 @@ Reproducible experiments comparing **local Jev**, **Ollama models**, and a **GPT
   <a href="JEV_CHEATSHEET.md"><strong>Read the Jev cheatsheet</strong></a> ·
   <a href="ARTICLE_DRAFT.md"><strong>Read the article draft</strong></a> ·
   <a href="SETUP.md"><strong>Setup guide</strong></a> ·
-  <a href="reports/"><strong>Reports</strong></a>
+  <a href="reports/README.md"><strong>Experiment reports</strong></a>
 </p>
 
 <img alt="Node.js 20+" src="https://img.shields.io/badge/Node.js-20%2B-339933?logo=node.js&logoColor=white">
@@ -82,6 +82,20 @@ The 10-alert rows are directly comparable. The 10,000-alert rows show scale and 
 - **Qwen3:** strongest 10-alert smoke result, but roughly 23.6 seconds per alert locally.
 - **GPT-5.6 Luna:** token and cost estimate only; no live API call has been made.
 - **Synthetic labels:** useful for wiring and regression checks, not proof of production quality.
+
+## Experiment map
+
+The reports are organized as separate experiments rather than one leaderboard. Start with the [experiment report index](reports/README.md) for the question, command, evidence, and limits behind each result.
+
+| ID | Experiment | Main report |
+|---|---|---|
+| E0 | Mock pipeline verification | [Mock routing](reports/jev-benchmark.mock.md) |
+| E1 | Typed support-ticket routing | [Local Jev routing](reports/jev-benchmark.md) |
+| E2 | 10-alert Jev and Ollama smoke comparison | [Jev](reports/alert-10-jev.md) · [Ollama](reports/alert-10-ollama.md) |
+| E3 | 100-alert threshold sanity check | [100-alert Jev](reports/alert-100-jev.md) |
+| E4 | 10k scale and hosted cost estimate | [10k Jev](reports/alert-10000-jev.md) · [Estimate](reports/alert-10000-estimate.md) |
+| E5 | Noul threshold sweep for grouping | [Grouping sample](reports/noul-grouping-sample.md) |
+| E6 | Auditable incident memory with abstention | [Decision report](reports/incident-memory-local-jev.md) · [Audit ledger](reports/incident-memory-audit.json) |
 
 ## Quick start
 
@@ -207,6 +221,7 @@ Keep keys server-side. For GPT-5.6 Luna, the checked-in estimate is in [`reports
 | `examples/noul-grouping-sample.mjs` | Pairwise Noul grouping experiment |
 | `examples/incident-memory.mjs` | Candidate-based, margin-aware Jev grouping workflow |
 | `examples/jev-benchmark.mjs` | Original support-ticket routing benchmark |
+| [`reports/README.md`](reports/README.md) | Experiment index and report guide |
 | `reports/` | Checked-in experiment outputs |
 | [`SETUP.md`](SETUP.md) | Installation and troubleshooting |
 | `experiments/jev/` | Protocol and analysis notes |

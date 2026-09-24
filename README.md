@@ -86,6 +86,22 @@ The 10-alert rows are directly comparable. The 10,000-alert rows show scale and 
 - **GPT-5.6 Luna:** token and cost estimate only; no live API call has been made.
 - **Synthetic labels:** useful for wiring and regression checks, not proof of production quality.
 
+## Jev vs Laya — same 10,000 alerts
+
+🟩 winner · 🟨 tie · ⬜ not directly comparable
+
+| Metric | Jev | Laya | Result |
+|---|---:|---:|:---:|
+| Accuracy | 88.42% | 88.42% | 🟨 Tie |
+| Precision | 0.00% | 0.00% | 🟨 Tie |
+| Recall | 0.00% | 0.00% | 🟨 Tie |
+| F1 | 0.00% | 0.00% | 🟨 Tie |
+| Total tokens | **443,694** | 797,756 | 🟩 Jev* |
+| Cost | $0 | $0 | 🟨 Tie |
+| Latency | 660.15 ms/request | 14.42 ms/alert batched | ⬜ N/A† |
+
+*Token totals use different provider accounting and are directional only. Jev latency is per request at concurrency 20; Laya latency is amortized MPS batch time, so it is not an apples-to-apples winner.
+
 ## Experiment map
 
 The reports are organized as separate experiments rather than one leaderboard. Start with the [experiment report index](reports/README.md) for the question, command, evidence, and limits behind each result.

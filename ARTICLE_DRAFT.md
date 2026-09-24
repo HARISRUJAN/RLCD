@@ -1,121 +1,285 @@
-# From alert storm to incident group
+# I Was on Jev’s Waitlist. So I Built a Local Benchmark Instead.
 
-## An honest evaluation of Jev for typed alert decisions
+*A small, reproducible comparison of Jev, Laya, and Ollama on typed alert decisions.*
 
-> **Status:** engineering article draft. The results are reproducible, but the data is synthetic and the grouping labels are not human-confirmed root causes.
+I was waiting for access to Jev when I started wondering about the underlying idea.
 
-## Abstract
+What if an AI system did not need to write an answer at all? What if I only needed one bounded decision: **does this alert represent a real incident that needs operator attention?**
 
-Alerting systems usually detect individual symptoms. Operators then have to decide which alerts belong to the same incident, which ones can be ignored, and which ones need immediate action. This project evaluates whether Jev—a typed decision model/service—can help with those bounded judgments.
+That question led me to build RLCD, a small local-first experiment comparing Jev with Laya and several Ollama models.
 
-The experiment compares local Jev-compatible inference with local Ollama models on a deterministic microcontroller-alert stream. It measures classification quality, Noul threshold behavior, latency, token usage, and cost. The result is not a model leaderboard. It is an integration study: the API is simple, but useful alert grouping depends on candidate generation, labels, and calibration.
+The result was more useful than a simple leaderboard. The models were easy to call. The hard parts were the labels, the threshold, the candidate-generation policy, and knowing when the system should abstain.
 
-## The decision problem
+The repository is available at [github.com/HARISRUJAN/RLCD](https://github.com/HARISRUJAN/RLCD).
 
-The application receives alerts containing a device, sensor, value, normal range, battery level, signal strength, and timestamp. A production system may also have topology, deployment events, logs, and recent incident history.
+## The idea: ask for a decision, not a paragraph
 
-The desired workflow is:
+Most model integrations begin with text:
+
+> “Read this alert and explain what is happening.”
+
+That can be useful for an operator, but it is awkward for software. The application still has to parse the answer, decide whether it is confident enough, and determine what action is safe.
+
+A typed decision reverses that relationship. The application sends state plus a question with a fixed answer space. The model returns a structured answer that the application can evaluate against an explicit policy.
+
+For this experiment, the question was:
 
 ```text
-alerts → deterministic correlation → candidate incident groups
-                                      ↓
-                              typed Jev judgment
-                                      ↓
-                           merge / create / review
+Does this microcontroller alert represent a real incident requiring operator action?
 ```
 
-Jev contributes the judgment. Ordinary application code still owns ingestion, policy, permissions, persistence, and actions. This follows the System One design described by [TypeSafe](https://typesafe.ai/blog/introducing-system-one-models-and-jev): structured decisions are returned for software to use, rather than prose for a person to interpret.
+The answer was a Noul value: a probability-like score for “yes.” The application made the final decision:
 
-## Experimental design
+```js
+const score = Number(response.answers.incident.noul);
+const predictedIncident = score >= threshold;
+```
 
-The generator creates 10,000 alerts from seed `42`. It uses six sensor types, 250 possible devices, normal operating ranges, and a deterministic 12% incident probability. The realized incident rate is 11.58%.
+That boundary matters. The model returns a signal. The application owns the threshold, persistence, permissions, merge policy, and action.
 
-There are three separate measurements:
+## Starting locally
 
-1. **Incident classification:** local Jev answers a Noul question about whether one alert requires operator action.
-2. **Pairwise grouping:** 100 incident-alert pairs are sampled from the same stream. Jev answers whether two alerts belong to the same synthetic root-cause family.
-3. **Local model smoke test:** Gemma, TinyLlama, and Qwen are run on 10 alerts through Ollama.
+I wanted a comparison I could run without waiting for hosted access or spending money on a large evaluation.
 
-The grouping oracle is evaluation-only. It labels two incident alerts as related when they share the generated sensor family and device zone. That makes the experiment reproducible, but it is not a real causal label and is never sent to Jev.
+The project has three local paths:
 
-## Results
+- a local Jev-compatible server using `nli-deberta-large`;
+- Laya’s `typed-decisions` checkpoint running on Apple MPS;
+- Ollama models producing a constrained JSON classification.
 
-### Classification and smoke test
+The same alert generator feeds every path. It uses a fixed seed, so a rerun does not silently change the test data.
 
-| Run | Classifier | Accuracy | Precision | Recall | F1 | Avg latency | Total tokens |
-|---|---|---:|---:|---:|---:|---:|---:|
-| 10 alerts | Local Jev | 80.00% | 0.00% | 0.00% | 0.00% | 72 ms | 446 |
-| 10 alerts | Gemma 3 4B | 50.00% | 28.57% | 100.00% | 44.44% | 3,612 ms | 1,060 |
-| 10 alerts | TinyLlama | 20.00% | 20.00% | 100.00% | 33.33% | 2,682 ms | 1,244 |
-| 10 alerts | Qwen3 4B AgentCoder | 100.00% | 100.00% | 100.00% | 100.00% | 23,554 ms | 6,315 |
-| 10,000 alerts | Local Jev | 88.42% | 0.00% | 0.00% | 0.00% | 660 ms | 443,694 |
+The basic workflow is:
 
-The local Jev server was run with `nli-deberta-large`. At Noul threshold `0.5`, it predicted no alerts as incidents. Because the generated incident prevalence was 11.58%, that produces 88.42% accuracy while missing every positive case. Accuracy alone is therefore misleading.
+```text
+generate the same alerts
+          ↓
+ask each system the same incident question
+          ↓
+apply the same 0.5 threshold
+          ↓
+compare predictions against the same labels
+```
 
-The Ollama rows are smoke tests, not reliable model rankings. In particular, Qwen’s perfect result is based on only 10 cases and its average latency is too high for an unmodified real-time alert path.
+The Jev and Laya paths use typed Noul decisions. Ollama uses a JSON schema with a boolean `incident` field. That is not a perfect architectural match, but it gives a useful local generative baseline.
 
-### Noul threshold behavior
+## The dataset
 
-For a Noul result `p`, the application predicts “yes” when `p >= threshold`.
+The generator creates a deterministic stream of synthetic microcontroller alerts:
 
-| Threshold | Accuracy | Precision | Recall | F1 | Predicted related pairs |
+- 10,000 alerts;
+- seed `42`;
+- six sensor types: temperature, vibration, voltage, current, pressure, and smoke;
+- 250 possible devices;
+- normal operating ranges for every sensor;
+- an incident probability of 12%, producing an observed rate of 11.58% in the 10,000-alert run.
+
+Each alert contains a device, zone, timestamp, sensor value, normal range, battery level, signal strength, and a synthetic incident label.
+
+The label is an evaluation oracle generated by the program. It is not a human-confirmed incident ID, and it is never sent to the model.
+
+That makes the benchmark reproducible, but not realistic enough to support production claims.
+
+## First result: the small smoke test
+
+Before running 10,000 cases, I ran ten alerts through the local systems. This was a wiring check: does the request work, does the response parse, and does the report capture metrics?
+
+| Model | Accuracy | Precision | Recall | F1 | Timing | Total tokens |
+|---|---:|---:|---:|---:|---:|---:|
+| Local Jev | 80.00% | 0.00% | 0.00% | 0.00% | 72 ms/request | 446 |
+| Gemma 3 4B via Ollama | 50.00% | 28.57% | 100.00% | 44.44% | 3,612 ms/request | 1,060 |
+| TinyLlama via Ollama | 20.00% | 20.00% | 100.00% | 33.33% | 2,682 ms/request | 1,244 |
+| Qwen3 4B AgentCoder via Ollama | 100.00% | 100.00% | 100.00% | 100.00% | 23,554 ms/request | 6,315 |
+| Laya typed-decisions | 80.00% | 0.00% | 0.00% | 0.00% | 1,030 ms/batch | 798 |
+
+The Qwen result looks impressive until the sample size is visible. Ten cases are enough to catch a broken integration. They are not enough to establish a model ranking.
+
+## The 10,000-alert comparison
+
+The larger run compared local Jev and Laya on exactly the same generated stream and the same threshold.
+
+| Metric | Local Jev | Laya typed-decisions |
+|---|---:|---:|
+| Alerts | 10,000 | 10,000 |
+| Accuracy | 88.42% | 88.42% |
+| Precision | 0.00% | 0.00% |
+| Recall | 0.00% | 0.00% |
+| F1 | 0.00% | 0.00% |
+| Total tokens | 443,694 | 797,756 |
+| Cost | $0 | $0 |
+| Timing | 660.15 ms/request, concurrency 20 | 144.24 s total, 14.42 ms/alert, batch size 128 |
+
+At first glance, Jev and Laya tie on accuracy. Neither system predicted a positive incident at the default threshold of `0.5`.
+
+That is the most important result in the article.
+
+## The accuracy trap
+
+The stream is imbalanced: only 11.58% of the alerts are incidents.
+
+If a classifier predicts “not an incident” every time, it gets the 88.42% majority class correct. That is exactly what the accuracy number is showing.
+
+So the meaningful part of the result is not:
+
+> “Both models achieved 88.42% accuracy.”
+
+It is:
+
+> “Both models missed every positive incident at the default threshold.”
+
+This is why the comparison includes precision, recall, and F1. Accuracy alone would make a useless classifier look successful.
+
+The result also shows why thresholds belong to the application layer. A score of `0.5` is a convenient starting point, not a calibration result.
+
+## What the local generative models added
+
+The Ollama run was intentionally small. It was not meant to prove that generative models are better or worse than typed-decision models.
+
+It answered a narrower engineering question: what happens when the same task is expressed as constrained JSON generation?
+
+The three local models behaved differently:
+
+- Gemma returned 50% accuracy with 100% recall, but many false positives.
+- TinyLlama returned 20% accuracy and 100% recall on the ten-case sample.
+- Qwen returned 100% on all four reported classification metrics, but took about 23.6 seconds per alert.
+
+The lesson is not that Qwen “won.” The lesson is that a ten-case smoke test can produce any headline you want if you do not also report sample size, class balance, latency, and error type.
+
+## A second question: can alerts be grouped?
+
+Classifying a single alert is only the first step. Operators usually care about incidents, not isolated rows.
+
+I added a pairwise grouping experiment. It sampled 100 incident-alert pairs and asked whether each pair belonged to the same synthetic root-cause family. The synthetic oracle defined “same root cause” as the same sensor family and device zone.
+
+| Noul threshold | Accuracy | Precision | Recall | F1 | Predicted same |
 |---:|---:|---:|---:|---:|---:|
 | 0.1 | 50.00% | 50.00% | 100.00% | 66.67% | 100/100 |
 | 0.3 | 36.00% | 37.50% | 42.00% | 39.62% | 56/100 |
 | 0.5 | 50.00% | 0.00% | 0.00% | 0.00% | 0/100 |
 
-This is a calibration result, not evidence that Jev is generally incapable of grouping. The local model, question wording, state representation, and synthetic oracle all affect it. It does show that `0.5` is not a magic threshold.
+The threshold changes the behavior dramatically. A lower threshold increases positive predictions and recall. A higher threshold avoids false merges but can fragment incidents.
 
-## What the experiment actually supports
+None of these thresholds is “correct” in the abstract. A real threshold should be selected on held-out, operator-confirmed incident data.
 
-The integration path is straightforward: a gateway can send a normalized alert and a small candidate set to Jev, then apply an application policy to the typed result. The harder work is upstream and downstream:
+## The architecture I would actually ship
 
-- candidate generation must include the correct incident group;
-- labels must represent real operator-confirmed incidents;
-- thresholds must be calibrated on held-out data;
-- uncertain results need a review lane;
-- automatic merging must be reversible and auditable.
+The experiment changed how I think about the role of a decision model. I would not give it the whole alerting system.
 
-For actual clustering, pairwise F1 is not enough. Evaluate the final clusters with pairwise metrics plus B-Cubed precision and recall, which measure over-linking and under-linking at the item level. [B-Cubed clustering evaluation](https://link.springer.com/article/10.1007/s10791-008-9066-8)
-
-## Recommended production architecture
+I would use it as one bounded step in a larger workflow:
 
 ```text
-1. Ingest alert
-2. Deduplicate exact repeats
-3. Apply time-window and topology correlation
-4. Build a small candidate-group list
-5. Ask Jev a Choice/Noul question
-6. Merge, create, or route to human review
-7. Store the decision, probability, threshold, model, and evidence
+alert arrives
+    ↓
+exact deduplication
+    ↓
+time-window and topology correlation
+    ↓
+small candidate incident set
+    ↓
+typed decision: merge, create, or review
+    ↓
+audited application action
 ```
 
-Hard safety rules should not depend on Jev. Jev should not be asked to prove a root cause from alert text alone. Provide the relevant topology, recent alerts, deployment changes, logs, and candidate causes.
+The deterministic parts should handle the obvious work: repeated alerts, timestamps, device relationships, deployments, and authorization.
 
-## The useful contribution: incident memory with abstention
+The model can help with the ambiguous part, but it should not be asked to invent a root cause from one line of alert text.
 
-The most defensible contribution in this repository is not a new model. It is a control layer around a typed decision model, implemented in [`examples/incident-memory.mjs`](examples/incident-memory.mjs) with a checked-in [decision report](reports/incident-memory-local-jev.md) and [audit ledger](reports/incident-memory-audit.json):
+## The useful pattern: abstention
 
-1. deterministic correlation narrows the search to a few candidates;
-2. Jev scores each candidate with an explicit Noul question;
-3. the policy requires both a high score and a margin over the runner-up;
-4. weak or ambiguous decisions are not merged automatically;
-5. every decision is written to an audit ledger with its candidates, score, margin, threshold, latency, and token usage.
+The strongest result in the repository is not a model win. It is the control layer around the model.
 
-On 500 generated alerts, 54 were actionable and 48 required Jev calls. Candidate recall was 100% for the 11 alerts whose root cause had already appeared. The conservative policy made zero automatic merges because the local model scores remained low. A separate exploratory lower-threshold shadow policy made 9 automatic merges and routed 39 cases to review, with 100% precision on the nine synthetic merges. That is a safety-policy observation, not a validated production threshold.
+The incident-memory workflow:
 
-## Limitations and next experiment
+1. generates a small candidate list using deterministic rules;
+2. asks Jev to score each candidate;
+3. requires both a high score and a margin over the runner-up;
+4. creates a new incident or sends the case to review when evidence is weak;
+5. records every decision, score, threshold, candidate, and action in an audit ledger.
 
-The next credible study needs historical alerts with confirmed `incident_id` and root-cause labels. Split by incident or time rather than randomly splitting alerts. Compare deterministic correlation, similarity search, local Jev, and hosted Jev on the same candidate groups.
+On a 500-alert run, candidate recall was 100% for the alerts eligible for grouping. The conservative policy made zero automatic merges because the local scores stayed low. That is not a failure of the safety policy. It is the policy refusing to pretend that weak evidence is strong evidence.
 
-Report:
+In an alerting system, “I don’t know” is often a better output than a confident false merge.
+
+## How to reproduce the comparison
+
+Clone the repository and install the Node dependencies:
+
+```sh
+git clone https://github.com/HARISRUJAN/RLCD.git
+cd RLCD
+npm install
+```
+
+Run the deterministic check:
+
+```sh
+npm run benchmark:mock
+```
+
+Run the local Jev-compatible server in one terminal:
+
+```sh
+npm run local
+```
+
+Then run the same 10,000-alert stream in another:
+
+```sh
+TYPESAFE_BASE_URL=http://127.0.0.1:8765 \
+TYPESAFE_API_KEY=local \
+ALERT_COUNT=10000 \
+ALERT_CONCURRENCY=20 \
+npm run alerts:jev
+```
+
+Activate the Python environment that contains Laya and run its typed-decision comparison:
+
+```sh
+source /path/to/laya/.venv/bin/activate
+ALERT_COUNT=10000 \
+LAYA_BATCH_SIZE=128 \
+npm run alerts:laya
+```
+
+Run the local Ollama smoke comparison:
+
+```sh
+ALERT_COUNT=10 ALERT_CONCURRENCY=2 npm run alerts:ollama
+```
+
+The generated reports are kept in [`reports/`](reports/). The Laya runner is [`examples/laya-compare.py`](examples/laya-compare.py), and the shared alert generator is [`examples/alert-data.mjs`](examples/alert-data.mjs).
+
+## What this experiment does not prove
+
+This is a teaching-sized engineering experiment, not a production evaluation. It does not prove:
+
+- that Jev or Laya can identify real root causes;
+- that the synthetic labels match operator judgment;
+- that the `0.5` threshold is calibrated;
+- that the 10-case Ollama results generalize;
+- that Laya’s batched timing is directly comparable to Jev’s per-request timing;
+- that token totals are comparable across different model runtimes and tokenizers;
+- that either system is safe to auto-merge incidents without human-reviewed data.
+
+The reports are useful because they keep those boundaries visible.
+
+## The next experiment
+
+The next credible version needs historical alerts with confirmed incident IDs and root-cause labels.
+
+I would split by incident or time, not randomly by alert. Then I would report:
 
 - pairwise precision, recall, and F1;
 - B-Cubed precision, recall, and F1;
 - false merges and fragmented incidents;
 - candidate-generation recall;
 - abstention and human-review rate;
-- cold-start and warm p50/p95 latency;
-- input tokens, retries, failures, and total cost.
+- cold and warm p50/p95 latency;
+- retries, failures, input tokens, output tokens, and total cost.
 
-Until that data exists, the responsible conclusion is narrow: **local Jev is a useful integration and calibration subject, but this experiment does not establish it as a trustworthy root-cause grouper.**
+Until that dataset exists, my conclusion is intentionally narrow:
+
+**Local Jev and Laya were useful for testing the typed-decision integration, but this experiment does not establish either one as a trustworthy root-cause grouper.**
+
+That was a better outcome than waiting for a model and then discovering that the real problem was the evaluation design.
